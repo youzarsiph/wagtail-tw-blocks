@@ -1,0 +1,1 @@
+"""Custom Wagtail CMS blocks"""

@@ -1,0 +1,35 @@
+{% load i18n %}
+
+<div
+  class="relative border border-base-300 bg-base-200 rounded-field overflow-hidden"
+>
+  <div class="flex items-center justify-between gap-2 p-2">
+    <div
+      class="tooltip tooltip-right tooltip-primary rtl:tooltip-left"
+      data-tip="{% trans 'Programming language' %}"
+    >
+      <span class="badge badge-soft badge-primary font-semibold">
+        <i data-lucide="terminal" class="size-4 lg:size-5"></i>
+        <span class="sr-only">{% trans 'Programming language' %}</span>
+        <span>{{ self.language|title }}</span>
+      </span>
+    </div>
+
+    <div
+      class="tooltip tooltip-left tooltip-primary rtl:tooltip-right"
+      data-tip="{% trans 'Copy' %}"
+    >
+      <button
+        class="btn btn-xs btn-copy btn-soft btn-square btn-primary lg:btn-sm"
+        data-clipboard-text="{{ self.code }}"
+      >
+        <span class="sr-only">{% trans 'Copy' %}</span>
+        <i data-lucide="copy" class="size-4 lg:size-5"></i>
+      </button>
+    </div>
+  </div>
+
+  <pre
+    style="margin: 0"
+  ><code class="language-{{ self.language }}">{{ self.code }}</code></pre>
+</div>

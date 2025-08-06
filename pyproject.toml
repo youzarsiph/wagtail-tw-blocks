@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "wagtail-blocks"
+version = "0.1.0"
+description = "Wagtail Blocks, an innovative Learning Management System (LMS)."
+authors = ["Yousef Abu Shanab <josephyousef249@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{ include = "wagtail_blocks" }]
+
+[tool.poetry.dependencies]
+python = ">=3.10"
+django = ">=5.2.1"
+wagtail = ">=7.0"
+
+[tool.poetry.group.dev.dependencies]
+black = ">=25.1.0"
+ruff = ">=0.11.9"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
