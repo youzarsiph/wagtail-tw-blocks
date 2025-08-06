@@ -1,3 +1,3 @@
 # wagtail-blocks
 
-Common wagtail blocks styled with TailwindCSS &amp; DaisyUI
+Common wagtail blocks styled with TailwindCSS & DaisyUI
