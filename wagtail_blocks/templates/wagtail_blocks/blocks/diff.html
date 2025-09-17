@@ -1,0 +1,11 @@
+{% load wagtailimages_tags %}
+
+<figure class="diff aspect-video" tabindex="0">
+  <div class="diff-item-1 size-full" role="img" tabindex="0">
+    {% image self.item_1 scale-100 %}
+  </div>
+  <div class="diff-item-2 size-full" role="img">
+    {% image self.item_2 scale-100 %}
+  </div>
+  <div class="diff-resizer"></div>
+</figure>

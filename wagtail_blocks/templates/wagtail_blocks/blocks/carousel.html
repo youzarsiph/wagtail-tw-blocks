@@ -1,0 +1,51 @@
+{% load i18n wagtailembeds_tags wagtailimages_tags %}
+
+<div
+  class="carousel size-full {% if self.is_vertical %} carousel-vertical {% endif %}"
+>
+  {% for item in self.items %}
+  <div class="carousel-item relative w-full">
+    {% if item.image %}
+    <figure class="skeleton overflow-clip">
+      {% image item.image scale-100 %}
+    </figure>
+    {% else %}{% embed item.video %}{% endif %}
+
+    <div class="absolute inset-x-4 bottom-4 flex items-center justify-between">
+      {% if not forloop.first %}
+      <div
+        class="tooltip tooltip-right tooltip-primary rtl:tooltip-left mr-auto rtl:ml-auto rtl:mr-0"
+        data-tip="{% trans 'Swipe left' %}"
+      >
+        <button
+          class="btn btn-circle btn-xs btn-primary md:btn-md xl:btn-lg 2xl:btn-xl"
+        >
+          <span class="sr-only">{% trans 'Swipe left' %}</span>
+          <i
+            date-lucide="chevron-left"
+            class="size-4 md:size-6 rtl:rotate-180"
+          ></i>
+        </button>
+      </div>
+      {% endif %}
+      <!---->
+      {% if not forloop.last %}
+      <div
+        class="tooltip tooltip-left tooltip-primary rtl:tooltip-right ml-auto rtl:mr-auto rtl:ml-0"
+        data-tip="{% trans 'Swipe right' %}"
+      >
+        <button
+          class="btn btn-circle btn-xs btn-primary md:btn-md xl:btn-lg 2xl:btn-xl"
+        >
+          <span class="sr-only">{% trans 'Swipe right' %}</span>
+          <i
+            date-lucide="chevron-right"
+            class="size-4 md:size-6 rtl:rotate-180"
+          ></i>
+        </button>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+  {% endfor %}
+</div>

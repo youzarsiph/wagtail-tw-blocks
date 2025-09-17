@@ -1,4 +1,4 @@
-name: Django CI
+name: CI
 
 on:
   push:
@@ -29,12 +29,25 @@ jobs:
         run: |
           source .venv/bin/activate
           poetry run django-admin startproject core
-          mv wagtail_blocks core
+          mv careers core
 
           # Configure settings
           echo "AUTH_USER_MODEL = 'users.User'" >> core/settings.py
           echo "INSTALLED_APPS += [" >> core/settings.py
-          echo "    'wagtail_blocks'," >> core/settings.py
+          echo "    'careers'," >> core/settings.py
+          echo "    'careers.api'," >> core/settings.py
+          echo "    'careers.apps.categories'," >> core/settings.py
+          echo "    'careers.apps.home'," >> core/settings.py
+          echo "    'careers.apps.indexes'," >> core/settings.py
+          echo "    'careers.apps.jobs'," >> core/settings.py
+          echo "    'careers.apps.tags'," >> core/settings.py
+          echo "    'careers.cms'," >> core/settings.py
+          echo "    'careers.ui'," >> core/settings.py
+          echo "    'django_countries'," >> core/settings.py
+          echo "    'django_filters'," >> core/settings.py
+          echo "    'rest_wind'," >> core/settings.py
+          echo "    'rest_framework'," >> core/settings.py
+          echo "    'wagtail.contrib.search_promotions'," >> core/settings.py
           echo "    'wagtail.contrib.forms'," >> core/settings.py
           echo "    'wagtail.contrib.redirects'," >> core/settings.py
           echo "    'wagtail.embeds'," >> core/settings.py
@@ -46,10 +59,30 @@ jobs:
           echo "    'wagtail.search'," >> core/settings.py
           echo "    'wagtail.admin'," >> core/settings.py
           echo "    'wagtail'," >> core/settings.py
+          echo "    'modelcluster'," >> core/settings.py
+          echo "    'taggit'," >> core/settings.py
           echo "]" >> core/settings.py
+          echo "MIDDLEWARE += ['wagtail.contrib.redirects.middleware.RedirectMiddleware']" >> core/settings.py
 
-      - name: the wagtail_blocks
+          # Setup URLConf
+          echo "from django.urls import include" >> core/urls.py
+          echo "from wagtail import urls as wagtail_urls" >> core/urls.py
+          echo "from wagtail.admin import urls as wagtailadmin_urls" >> core/urls.py
+          echo "from wagtail.documents import urls as wagtaildocs_urls" >> core/urls.py
+          echo "urlpatterns += [" >> core/urls.py
+          echo "    path('', include('django.conf.urls.i18n'))," >> core/urls.py
+          echo "    path('', include('careers.ui.urls', namespace='careers'))," >> core/urls.py
+          echo "    path('api/', include('careers.api.urls'))," >> core/urls.py
+          echo "    path('api/', include('rest_framework.urls'))," >> core/urls.py
+          echo "    path('documents/', include(wagtaildocs_urls))," >> core/urls.py
+          echo "    path('dashboard/', include(wagtailadmin_urls))," >> core/urls.py
+          echo "    path('', include('django.contrib.auth.urls'))," >> core/urls.py
+          echo "    path('', include(wagtail_urls))," >> core/urls.py
+          echo "]" >> core/urls.py
+
+      - name: Run the careers
         run: |
           source .venv/bin/activate
-          poetry python core/manage.py migrate
-          poetry python core/manage.py check
+          poetry run python core/manage.py migrate
+          poetry run python core/manage.py check
+          poetry run python core/manage.py test

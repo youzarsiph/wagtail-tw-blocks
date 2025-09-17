@@ -1,0 +1,17 @@
+<div class="grid gap-4">
+  {% for item in self.items %}
+  <div
+    class="collapse collapse-{{ self.variant }} bg-base-100 rounded-box border-base-300 border shadow-sm"
+  >
+    <input
+      type="radio"
+      name="{{ self.name|slugify }}"
+      checked="{{ item.is_expanded }}"
+    />
+    <div class="collapse-title font-semibold">{{ item.title }}</div>
+    <div class="collapse-content">
+      <div class="prose prose-sm">{{ item.content }}</div>
+    </div>
+  </div>
+  {% endfor %}
+</div>

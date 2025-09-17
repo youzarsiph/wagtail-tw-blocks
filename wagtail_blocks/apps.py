@@ -8,4 +8,5 @@ class WagtailBlocksConfig(AppConfig):
     """App configuration for wagtail_blocks"""
 
     name = "wagtail_blocks"
+    label = "wagtail_tw_blocks"
     default_auto_field = "django.db.models.BigAutoField"

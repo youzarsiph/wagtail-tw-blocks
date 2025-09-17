@@ -1,0 +1,23 @@
+{% load wagtailcore_tags %}
+
+<div
+  role="alert"
+  class="alert alert-{{ self.variant }} alert-{{ self.level }} {% if self.is_vertical %} alert-vertical {% endif %}"
+>
+  <span class="badge badge-sm badge-{{ self.level }} lg:badge-md">
+    {{ self.level }}
+  </span>
+
+  <div>{{ self.message }}</div>
+
+  <div class="flex items-center gap-1 flex-wrap">
+    {% for action in self.actions %}
+    <a
+      href="{% if self.action.page %}{% pageurl self.action.page %}{% else %}{{ self.action.url }}{% endif %}"
+      class="btn btn-sm btn-{{ self.level }} md:btn-md"
+    >
+      {{ self.action.label }}
+    </a>
+    {% endfor %}
+  </div>
+</div>

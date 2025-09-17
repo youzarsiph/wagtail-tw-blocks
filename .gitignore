@@ -64,6 +64,7 @@ core/
 manage.py
 media/
 rest_wind/
+items/
 
 # Flask stuff:
 instance/

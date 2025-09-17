@@ -1,20 +1,30 @@
 {% load i18n %}
 
 <div
-  class="relative border border-base-300 bg-base-200 rounded-field overflow-hidden"
+  class="card card-sm lg:card-md 2xl:card-lg border border-base-300 bg-base-200"
 >
-  <div class="flex items-center justify-between gap-2 p-2">
+  <div class="flex items-center justify-between gap-4 p-2">
+    <div class="flex items-center gap-2">
+      <div class="size-5 rounded-full bg-green-500"></div>
+      <div class="size-5 rounded-full bg-yellow-500"></div>
+      <div class="size-5 rounded-full bg-red-500"></div>
+    </div>
+
+    {% if self.show_language %}
     <div
-      class="tooltip tooltip-right tooltip-primary rtl:tooltip-left"
+      class="tooltip tooltip-bottom tooltip-primary"
       data-tip="{% trans 'Programming language' %}"
     >
-      <span class="badge badge-soft badge-primary font-semibold">
+      <span class="badge badge-sm badge-primary lg:badge-md">
         <i data-lucide="terminal" class="size-4 lg:size-5"></i>
         <span class="sr-only">{% trans 'Programming language' %}</span>
         <span>{{ self.language|title }}</span>
       </span>
     </div>
+    {% endif %}
 
+    <!---->
+    {% if self.show_language %}
     <div
       class="tooltip tooltip-left tooltip-primary rtl:tooltip-right"
       data-tip="{% trans 'Copy' %}"
@@ -27,9 +37,10 @@
         <i data-lucide="copy" class="size-4 lg:size-5"></i>
       </button>
     </div>
+    {% endif %}
   </div>
 
   <pre
-    style="margin: 0"
-  ><code class="language-{{ self.language }}">{{ self.code }}</code></pre>
+    class="overflow-x-auto max-w-full"
+  ><code class="p-4 bg-transparent language-{{ self.language }}">{{ self.code }}</code></pre>
 </div>

@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "wagtail-blocks"
+name = "wagtail-tw-blocks"
 version = "0.1.0"
-description = "Wagtail Blocks, Common wagtail blocks styled with TailwindCSS & DaisyUI"
+description = "A collection of reusable, production-ready content blocks for Wagtail CMS, styled with Tailwind CSS and daisyUI."
 authors = ["Yousef Abu Shanab <josephyousef249@gmail.com>"]
 license = "MIT"
 readme = "README.md"
