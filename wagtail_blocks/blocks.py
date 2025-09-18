@@ -33,6 +33,12 @@ SHOW_COPY_BUTTON = getattr(
     True,
 )
 
+SHOW_WINDOW_CONTROLS = getattr(
+    settings,
+    "WAGTAIL_BLOCKS_SHOW_WINDOW_CONTROLS",
+    True,
+)
+
 
 class ButtonBlock(blocks.StructBlock):
     """Action block (link)"""
@@ -100,6 +106,17 @@ class AccordionBlock(blocks.StructBlock):
 class AlertBlock(blocks.StructBlock):
     """Alert block"""
 
+    icon = blocks.CharBlock(
+        max_length=32,
+        required=False,
+        default="alert-triangle",
+        help_text=_("Icon name (lucide icons)"),
+    )
+    is_vertical = blocks.BooleanBlock(
+        default=False,
+        required=False,
+        help_text=_("Designates if article is vertical or horizontal (default)"),
+    )
     variant = blocks.ChoiceBlock(
         choices=ALERT_STYLE_VARIANTS,
         required=False,
@@ -107,7 +124,7 @@ class AlertBlock(blocks.StructBlock):
     )
     level = blocks.ChoiceBlock(
         choices=ALERT_LEVELS,
-        required=False,
+        required=True,
         help_text=_("Alert level"),
     )
     message = blocks.RichTextBlock(
@@ -151,6 +168,11 @@ class CarouselItemBlock(blocks.StructBlock):
         required=False,
         help_text=_("Video"),
     )
+    caption = blocks.CharBlock(
+        max_length=128,
+        required=False,
+        help_text=_("Caption"),
+    )
 
 
 class CarouselBlock(blocks.StructBlock):
@@ -186,6 +208,11 @@ class CodeBlock(blocks.StructBlock):
         default=SHOW_COPY_BUTTON,
         required=False,
         help_text=_("Wether to show or hide copy buttons"),
+    )
+    show_window_btns = blocks.BooleanBlock(
+        default=SHOW_WINDOW_CONTROLS,
+        required=False,
+        help_text=_("Wether to show or hide window buttons"),
     )
     language = blocks.ChoiceBlock(
         choices=PROGRAMMING_LANGUAGES,

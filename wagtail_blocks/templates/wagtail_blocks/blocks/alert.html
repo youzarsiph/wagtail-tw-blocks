@@ -1,23 +1,23 @@
 {% load wagtailcore_tags %}
 
-<div
-  role="alert"
-  class="alert alert-{{ self.variant }} alert-{{ self.level }} {% if self.is_vertical %} alert-vertical {% endif %}"
->
-  <span class="badge badge-sm badge-{{ self.level }} lg:badge-md">
-    {{ self.level }}
-  </span>
+<div class="my-4">
+  <div
+    role="alert"
+    class="not-prose alert alert-{{ self.variant }} alert-{{ self.level }} {% if self.is_vertical %} alert-vertical {% endif %}"
+  >
+    <i data-lucide="{{ self.icon }}" class="size-4 lg:size-6"></i>
 
-  <div>{{ self.message }}</div>
+    <div>{{ self.message }}</div>
 
-  <div class="flex items-center gap-1 flex-wrap">
-    {% for action in self.actions %}
-    <a
-      href="{% if self.action.page %}{% pageurl self.action.page %}{% else %}{{ self.action.url }}{% endif %}"
-      class="btn btn-sm btn-{{ self.level }} md:btn-md"
-    >
-      {{ self.action.label }}
-    </a>
-    {% endfor %}
+    <div class="flex items-center gap-1 flex-wrap">
+      {% for action in self.actions %}
+      <a
+        href="{% if action.page %}{% pageurl action.page %}{% else %}{{ action.url }}{% endif %}"
+        class="btn btn-xs {% if self.variant != 'soft' %} btn-soft {% endif %} btn-{{ self.level }} md:btn-sm lg:btn-md"
+      >
+        {{ action.label }}
+      </a>
+      {% endfor %}
+    </div>
   </div>
 </div>

@@ -10,8 +10,7 @@ ACCORDION_STYLE_VARIANTS = [
 
 ALERT_STYLE_VARIANTS = [
     ("soft", _("Soft")),
-    ("outlined", _("Outlined")),
-    ("dashed", _("Dashed")),
+    ("outline", _("Outline")),
 ]
 
 ALERT_LEVELS = [

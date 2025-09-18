@@ -75,6 +75,11 @@ WAGTAIL_BLOCKS_SHOW_PROGRAMMING_LANGUAGE = True  # Default is True
 
 # Show or hide the copy button in the CodeBlock
 WAGTAIL_BLOCKS_SHOW_COPY_BUTTON = True  # Default is True
+
+# Show or hide window control buttons in the CodeBlock
+WAGTAIL_BLOCKS_SHOW_WINDOW_CONTROLS = True  # Default is True
+```
+
 ---
 
 ## Usage example
