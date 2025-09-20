@@ -2,17 +2,23 @@
 
 <div class="my-4">
   <div
-    class="not-prose carousel size-full {% if self.is_vertical %} carousel-vertical {% endif %}"
+    class="not-prose carousel size-full {% if self.is_vertical %} carousel-vertical {% endif %} rounded-box overflow-clip"
   >
     {% for item in self.items %}
     <div class="carousel-item relative w-full">
       {% if item.image %}
-      <figure class="skeleton overflow-clip">
-        {% image item.image scale-100 %} {% if item.caption %}
+      <figure class="skeleton size-full">
+        {% image item.image scale-100 %}
+
+        <!---->
+        {% if item.caption %}
         <figcaption class="sr-only">{{ item.caption }}</figcaption>
+        {% endif %}
       </figure>
       {% elif item.video %}
       <div>{% embed item.video %}</div>
+      {% else %}
+      <div class="skeleton size-full"></div>
       {% endif %}
 
       <div
@@ -28,7 +34,7 @@
           >
             <span class="sr-only">{% trans 'Swipe left' %}</span>
             <i
-              date-lucide="chevron-left"
+              data-lucide="chevron-left"
               class="size-4 md:size-6 rtl:rotate-180"
             ></i>
           </button>
@@ -45,7 +51,7 @@
           >
             <span class="sr-only">{% trans 'Swipe right' %}</span>
             <i
-              date-lucide="chevron-right"
+              data-lucide="chevron-right"
               class="size-4 md:size-6 rtl:rotate-180"
             ></i>
           </button>

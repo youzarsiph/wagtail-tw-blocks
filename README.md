@@ -115,8 +115,6 @@ class Article(Page):
 ```html
 <!-- blog/base.html -->
 
-{% load static %}
-
 <!doctype html>
 
 <html data-theme="luxury">
@@ -124,15 +122,46 @@ class Article(Page):
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Wagtail Blocks Usage Example</title>
-    <!-- You also may want to include TailwindCSS and daisyUI -->
+
+    <!--
+      Do not use in production.
+      See: 
+        - https://tailwindcss.com/docs/installation
+        - https://daisyui.com/docs/install/
+    -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- Code highlighting for CodeBlock -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github-dark.min.css"
+    />
+    <script>hljs.highlightAll();</script>
+    
+    <!-- If you already using TailwindCSS and daisyUI you can include -->
+    {% load static %}
     <link href="{% static 'wagtail_blocks/css/styles.css' %}" rel="stylesheet" type="text/css" />
   </head>
 
   <body>
-    <!-- ... -->
-     <main>
-       {{ article.content }}
-     </main>
+    <!-- 
+      Requires TailwindCSS Typography plugin.
+      "@tailwindcss/typography": https://github.com/tailwindlabs/tailwindcss-typography
+    -->
+    <main class="prose mx-auto prose-sm prose-video:rounded-box xl:prose-lg 2xl:prose-xl prose-headings:text-primary prose-img:rounded-box prose-img:w-full">
+      {{ article.content }}
+    </main>
+
+    <!-- Lucide icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>lucide.createIcons();</script>
+
+    <!-- For copy buttons in CodeBlock -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js"></script>
+    <script>const btns = new ClipboardJS(".btn-copy");</script>
   </body>
 </html>
 ```

@@ -1,7 +1,10 @@
 {% load wagtailimages_tags %}
 
 <div class="my-4">
-  <figure class="not-prose diff aspect-video" tabindex="0">
+  <figure
+    tabindex="0"
+    class="not-prose diff aspect-video rounded-box overflow-clip"
+  >
     <div class="diff-item-1 size-full" role="img" tabindex="0">
       {% image self.item_1 scale-100 %}
     </div>
