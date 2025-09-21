@@ -1,0 +1,24 @@
+<div class="my-4 not-prose">
+  <div
+    class="tabs {% if self.is_reversed %} tabs-bottom {% endif %} tabs-xs tabs-{{ self.style }} sm:tabs-sm lg:tabs-md xl:tabs-lg 2xl:tabs-xl"
+  >
+    {% for item in self.items %}
+    <input
+      class="tab"
+      type="radio"
+      aria-label="{{ item.title }}"
+      name="{{ self.name|slugify }}"
+      checked="{% if item.is_selected %}true{% else %}false{% endif %}"
+    />
+    <div
+      class="tab-content bg-base-100 border-base-300 p-4 {% if self.style != 'lift' %} rounded-field {% endif %}"
+    >
+      <div
+        class="prose mx-auto prose-sm xl:prose-lg 2xl:prose-xl prose-img:w-full prose-img:rounded-field"
+      >
+        {{ item.content }}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>

@@ -1,0 +1,30 @@
+{% load wagtailcore_tags %}
+
+<div class="my-4 not-prose">
+  <ol
+    class="timeline {% if self.snap_to_icon %} timeline-snap-icon {% endif %}{% if self.is_compact %} timeline-compact {% endif %}{% if self.is_vertical %} timeline-vertical {% endif %}"
+  >
+    {% for item in self.items %}
+    <li>
+      {% if not forloop.first %}
+      <hr class="bg-primary" />
+      {% endif %}
+
+      <time datetime="{{ item.date|date }}" class="timeline-start text-xs">
+        {{ item.date|date }}
+      </time>
+      <div class="timeline-middle">
+        <i
+          data-lucide="{{ item.icon }}"
+          class="size-4 text-primary lg:size-6"
+        ></i>
+      </div>
+      <p class="timeline-end timeline-box">{{ item.content }}</p>
+
+      {% if not forloop.last %}
+      <hr class="bg-primary" />
+      {% endif %}
+    </li>
+    {% endfor %}
+  </ol>
+</div>

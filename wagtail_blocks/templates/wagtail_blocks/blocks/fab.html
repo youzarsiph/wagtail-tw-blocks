@@ -1,0 +1,43 @@
+{% load wagtailcore_tags %}
+
+<div class="fab items-center {% if self.is_flower %} fab-flower {% endif %}">
+  <div
+    tabindex="0"
+    class="tooltip tooltip-left tooltip-{{ self.toggle.color }} rtl:tooltip-right"
+    data-tip="{{ self.toggle.label }}"
+  >
+    <div
+      role="button"
+      class="btn btn-circle btn-sm btn-{{ self.toggle.color }} sm:btn-md lg:btn-lg xl:btn-xl"
+    >
+      <span class="sr-only">{{ self.toggle.label }}</span>
+      <i data-lucide="{{ self.toggle.icon }}" class="size-4 lg:size-6"></i>
+    </div>
+  </div>
+
+  {% if self.main %}
+  <a
+    href="{% if self.main.page %}{% pageurl self.main.page %}{% else %}{{ self.main.url }}{% endif %}"
+    class="fab-main-action btn btn-circle btn-sm btn-{{ self.main.color }} sm:btn-md lg:btn-lg xl:btn-xl"
+  >
+    <span class="sr-only">{{ self.main.label }}</span>
+    <i data-lucide="{{ self.main.icon }}" class="size-4 lg:size-6"></i>
+  </a>
+  {% endif %}
+
+  <!---->
+  {% for item in self.items %}
+  <div
+    class="tooltip tooltip-left tooltip-{{ item.color }} rtl:tooltip-right"
+    data-tip="{{ item.label }}"
+  >
+    <a
+      href="{% if item.page %}{% pageurl item.page %}{% else %}{{ item.url }}{% endif %}"
+      class="btn btn-circle btn-xs btn-{{ item.color }} sm:btn-sm xl:btn-lg 2xl:btn-xl"
+    >
+      <span class="sr-only">{{ item.label }}</span>
+      <i data-lucide="{{ item.icon }}" class="size-4 lg:size-6"></i>
+    </a>
+  </div>
+  {% endfor %}
+</div>

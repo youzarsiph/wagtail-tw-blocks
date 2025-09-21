@@ -24,6 +24,13 @@
 - **Carousel:** Image or content slider with responsive design.
 - **Code:** Syntax-highlighted code snippets for technical content (Requires `highlight.js` and `clipboard.js` to be included in your page).
 - **Diff:** Side-by-side or inline difference highlighting for image comparisons.
+- **FAB:** Floating Action Button with multiple action items.
+- **Hover Gallery:** Image gallery with hover effects.
+- **List:** Ordered lists with custom styling.
+- **Steps:** Step-by-step process indicators.
+- **Tabs:** Tabbed content sections.
+- **Timeline:** Chronological event listings.
+- **Toast:** Temporary notification messages.
 
 ---
 
@@ -102,6 +109,7 @@ class Article(Page):
             ("carousel", blocks.CarouselBlock()),
             ("code", blocks.CodeBlock()),
             ("diff", blocks.DiffBlock()),
+            # ...
         ],
         help_text=_("Article content"),
     )
@@ -127,7 +135,6 @@ class Article(Page):
       Do not use in production.
       See: 
         - https://tailwindcss.com/docs/installation
-        - https://daisyui.com/docs/install/
     -->
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
@@ -178,6 +185,23 @@ class Article(Page):
 - **Linting:** Ruff for fast, comprehensive linting.  
 - **Testing:** Django test runner for unit and integration tests.  
 - **Starter configs:** `.gitignore`, `pyproject.toml`, and other essentials included.
+
+---
+
+## Extending
+
+You can easily extend or customize the provided blocks by subclassing them. For example, to create a custom alert block with additional styles:
+
+```python
+from wagtail_blocks import blocks
+
+class CustomAlertBlock(blocks.AlertBlock):
+
+    class Meta:
+        template = "path/to/your/custom_alert_template.html"
+        icon = "warning"
+        label = "Custom Alert"
+```
 
 ---
 

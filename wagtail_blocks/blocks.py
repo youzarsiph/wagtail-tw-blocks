@@ -7,12 +7,13 @@ from wagtail.embeds.blocks import EmbedBlock
 from wagtail.images.blocks import ImageBlock
 
 from wagtail_blocks import (
-    ACCORDION_STYLE_VARIANTS,
+    ACCORDION_STYLES,
     ALERT_LEVELS,
-    ALERT_STYLE_VARIANTS,
+    ALERT_STYLES,
+    COLOR_CHOICES,
     PROGRAMMING_LANGUAGES,
+    TAB_STYLES,
 )
-
 
 # Settings
 PROGRAMMING_LANGUAGES = getattr(
@@ -43,6 +44,12 @@ SHOW_WINDOW_CONTROLS = getattr(
 class ButtonBlock(blocks.StructBlock):
     """Action block (link)"""
 
+    icon = blocks.CharBlock(
+        max_length=32,
+        required=False,
+        default="check-circle2",
+        help_text=_("Icon name (lucide icons)"),
+    )
     label = blocks.CharBlock(
         max_length=32,
         required=False,
@@ -56,11 +63,22 @@ class ButtonBlock(blocks.StructBlock):
         required=False,
         help_text=_("Action external link"),
     )
+    color = blocks.ChoiceBlock(
+        choices=COLOR_CHOICES,
+        required=False,
+        help_text=_("Action button color"),
+    )
 
 
-class AccordionItemBlock(blocks.StructBlock):
+class AccordionItem(blocks.StructBlock):
     """Accordion Item"""
 
+    icon = blocks.CharBlock(
+        max_length=32,
+        required=False,
+        default="check-circle2",
+        help_text=_("Icon name (lucide icons)"),
+    )
     is_expanded = blocks.BooleanBlock(
         default=False,
         required=False,
@@ -78,20 +96,23 @@ class AccordionItemBlock(blocks.StructBlock):
 
 
 class AccordionBlock(blocks.StructBlock):
-    """Accordions block"""
+    """
+    Accordion is used for showing and hiding content
+    but only one item can stay open at a time.
+    """
 
     name = blocks.CharBlock(
         max_length=64,
         required=True,
         help_text=_("Accordion name"),
     )
-    variant = blocks.ChoiceBlock(
-        choices=ACCORDION_STYLE_VARIANTS,
+    style = blocks.ChoiceBlock(
+        choices=ACCORDION_STYLES,
         required=False,
-        help_text=_("Style variant"),
+        help_text=_("Accordion style"),
     )
     items = blocks.ListBlock(
-        AccordionItemBlock(),
+        AccordionItem(),
         required=True,
         help_text=_("Accordion items"),
     )
@@ -99,12 +120,12 @@ class AccordionBlock(blocks.StructBlock):
     class Meta:
         """Meta data"""
 
-        icon = "folder-open-inverse"
+        icon = "collapse-down"
         template = "wagtail_blocks/blocks/accordion.html"
 
 
 class AlertBlock(blocks.StructBlock):
-    """Alert block"""
+    """Alert informs users about important events."""
 
     icon = blocks.CharBlock(
         max_length=32,
@@ -115,12 +136,12 @@ class AlertBlock(blocks.StructBlock):
     is_vertical = blocks.BooleanBlock(
         default=False,
         required=False,
-        help_text=_("Designates if article is vertical or horizontal (default)"),
+        help_text=_("Designates if alert is vertical or horizontal (default)"),
     )
-    variant = blocks.ChoiceBlock(
-        choices=ALERT_STYLE_VARIANTS,
+    style = blocks.ChoiceBlock(
+        choices=ALERT_STYLES,
         required=False,
-        help_text=_("Style variant"),
+        help_text=_("Alert style"),
     )
     level = blocks.ChoiceBlock(
         choices=ALERT_LEVELS,
@@ -142,10 +163,7 @@ class AlertBlock(blocks.StructBlock):
         ],
     )
     actions = blocks.ListBlock(
-        ButtonBlock(
-            required=False,
-            help_text=_("Alert action"),
-        ),
+        ButtonBlock(),
         required=False,
         help_text=_("Alert actions"),
     )
@@ -157,8 +175,8 @@ class AlertBlock(blocks.StructBlock):
         template = "wagtail_blocks/blocks/alert.html"
 
 
-class CarouselItemBlock(blocks.StructBlock):
-    """Carousel Item block"""
+class CarouselItem(blocks.StructBlock):
+    """Carousel Items"""
 
     image = ImageBlock(
         required=False,
@@ -176,7 +194,7 @@ class CarouselItemBlock(blocks.StructBlock):
 
 
 class CarouselBlock(blocks.StructBlock):
-    """Carousel block"""
+    """Carousel show images or content in a scrollable area."""
 
     is_vertical = blocks.BooleanBlock(
         default=False,
@@ -184,7 +202,7 @@ class CarouselBlock(blocks.StructBlock):
         help_text=_("Designates if carousel is vertical or horizontal (default)"),
     )
     items = blocks.ListBlock(
-        CarouselItemBlock(),
+        CarouselItem(),
         required=True,
         help_text=_("Carousel items"),
     )
@@ -192,12 +210,12 @@ class CarouselBlock(blocks.StructBlock):
     class Meta:
         """Meta data"""
 
-        icon = "image"
+        icon = "media"
         template = "wagtail_blocks/blocks/carousel.html"
 
 
 class CodeBlock(blocks.StructBlock):
-    """Code block"""
+    """Code block is used to show a block of code in a box that looks like a code editor."""
 
     show_language = blocks.BooleanBlock(
         default=SHOW_PROGRAMMING_LANGUAGE,
@@ -213,6 +231,12 @@ class CodeBlock(blocks.StructBlock):
         default=SHOW_WINDOW_CONTROLS,
         required=False,
         help_text=_("Wether to show or hide window buttons"),
+    )
+    file_name = blocks.CharBlock(
+        max_length=64,
+        default="Untitled",
+        required=True,
+        help_text=_("File name"),
     )
     language = blocks.ChoiceBlock(
         choices=PROGRAMMING_LANGUAGES,
@@ -233,7 +257,7 @@ class CodeBlock(blocks.StructBlock):
 
 
 class DiffBlock(blocks.StructBlock):
-    """Diff block"""
+    """Diff component shows a side-by-side comparison of two items."""
 
     item_1 = ImageBlock(
         required=True,
@@ -247,5 +271,293 @@ class DiffBlock(blocks.StructBlock):
     class Meta:
         """Meta data"""
 
-        icon = "code"
+        icon = "image"
         template = "wagtail_blocks/blocks/diff.html"
+
+
+class FABBlock(blocks.StructBlock):
+    """
+    FAB (Floating Action Button) stays in the bottom corner of screen. It includes a
+    focusable and accessible element with button role. Clicking or focusing it shows
+    additional buttons (known as Speed Dial buttons) in a vertical arrangement or a
+    flower shape (quarter circle).
+    """
+
+    is_flower = blocks.BooleanBlock(
+        default=False,
+        required=False,
+        help_text=_("Designates if FAB is vertical or flower shaped (quarter circle)"),
+    )
+    toggle = ButtonBlock(
+        required=True,
+        help_text=_("FAB toggle btn"),
+    )
+    main = ButtonBlock(
+        required=False,
+        help_text=_("FAB main action"),
+    )
+    items = blocks.ListBlock(
+        ButtonBlock(),
+        required=True,
+        help_text=_("FAB items"),
+    )
+
+    class Meta:
+        """Meta data"""
+
+        icon = "grip"
+        template = "wagtail_blocks/blocks/fab.html"
+
+
+class HoverGalleryItem(blocks.StructBlock):
+    """Hover gallery items"""
+
+    image = ImageBlock(
+        required=True,
+        help_text=_("Image"),
+    )
+    caption = blocks.CharBlock(
+        max_length=128,
+        required=False,
+        help_text=_("Caption"),
+    )
+
+
+class HoverGalleryBlock(blocks.StructBlock):
+    """
+    Hover Gallery is container of images.
+    The first image is visible be default and when we hover it horizontally,
+    other images show up. Hover Gallery is useful for product cards in ecommerce sites,
+    portfoilios or in image galleries. Hover Gallery can include up to 10 images.
+    """
+
+    items = blocks.ListBlock(
+        HoverGalleryItem(),
+        required=True,
+        help_text=_("Gallery items"),
+    )
+
+    class Meta:
+        """Meta data"""
+
+        icon = "image"
+        template = "wagtail_blocks/blocks/hover_gallery.html"
+
+
+class TimelineItem(blocks.StructBlock):
+    """Timeline item"""
+
+    date = blocks.DateBlock(
+        required=True,
+        help_text=_("Item date"),
+    )
+    icon = blocks.CharBlock(
+        max_length=32,
+        required=False,
+        default="check-circle2",
+        help_text=_("Icon name (lucide icons)"),
+    )
+    content = blocks.CharBlock(
+        max_length=128,
+        required=True,
+        help_text=_("Item content"),
+    )
+
+
+class TimelineBlock(blocks.StructBlock):
+    """Timeline component shows a list of events in chronological order."""
+
+    is_compact = blocks.BooleanBlock(
+        default=False,
+        required=False,
+        help_text=_("Designates if timeline is compact"),
+    )
+    is_vertical = blocks.BooleanBlock(
+        default=False,
+        required=False,
+        help_text=_("Designates if timeline is vertical or horizontal (default)"),
+    )
+    snap_to_icon = blocks.BooleanBlock(
+        default=False,
+        required=False,
+        help_text=_("Designates if dates should snap to icons"),
+    )
+    items = blocks.ListBlock(
+        TimelineItem(),
+        required=True,
+        help_text=_("Timeline items"),
+    )
+
+    class Meta:
+        """Meta data"""
+
+        icon = "calendar-alt"
+        template = "wagtail_blocks/blocks/timeline.html"
+
+
+class StepItem(blocks.StructBlock):
+    """Step item"""
+
+    name = blocks.CharBlock(
+        max_length=64,
+        required=True,
+        help_text=_("Item name"),
+    )
+    icon = blocks.CharBlock(
+        max_length=32,
+        required=False,
+        default="check-circle2",
+        help_text=_("Icon name (lucide icons)"),
+    )
+    color = blocks.ChoiceBlock(
+        choices=COLOR_CHOICES,
+        required=False,
+        help_text=_("Item color"),
+    )
+
+
+class StepsBlock(blocks.StructBlock):
+    """Steps can be used to show a list of steps in a process."""
+
+    is_vertical = blocks.BooleanBlock(
+        default=False,
+        required=False,
+        help_text=_("Designates if Steps is vertical or horizontal (default)"),
+    )
+    items = blocks.ListBlock(
+        StepItem(),
+        required=True,
+        help_text=_("Steps items"),
+    )
+
+    class Meta:
+        """Meta data"""
+
+        icon = "breadcrumb-expand"
+        template = "wagtail_blocks/blocks/steps.html"
+
+
+class TabItem(blocks.StructBlock):
+    """Tab items"""
+
+    title = blocks.CharBlock(
+        max_length=64,
+        required=True,
+        help_text=_("Item title"),
+    )
+    is_selected = blocks.BooleanBlock(
+        default=False,
+        required=False,
+        help_text=_("Designates if tab is selected"),
+    )
+    content = blocks.StreamBlock(
+        [
+            ("alert", AlertBlock(required=True, help_text=_("Alert"))),
+            ("code", CodeBlock(required=True, help_text=_("Code"))),
+            ("image", ImageBlock(required=True, help_text=_("Image"))),
+            ("video", EmbedBlock(required=True, help_text=_("Video"))),
+            ("text", blocks.RichTextBlock(required=True, help_text=_("Rich text"))),
+        ],
+        required=True,
+        help_text=_("Tab Content"),
+    )
+
+
+class TabsBlock(blocks.StructBlock):
+    """Tabs can be used to show a list of links in a tabbed format."""
+
+    name = blocks.CharBlock(
+        max_length=64,
+        required=True,
+        help_text=_("Tab name"),
+    )
+    is_reversed = blocks.BooleanBlock(
+        default=False,
+        required=False,
+        help_text=_("Designates if tab buttons position is reversed"),
+    )
+    style = blocks.ChoiceBlock(
+        choices=TAB_STYLES,
+        required=False,
+        help_text=_("Tab style"),
+    )
+    items = blocks.ListBlock(
+        TabItem(),
+        required=True,
+        help_text=_("Tab items"),
+    )
+
+    class Meta:
+        """Meta data"""
+
+        icon = "dots-horizontal"
+        template = "wagtail_blocks/blocks/tabs.html"
+
+
+class ToastBlock(blocks.StructBlock):
+    """Toast is a wrapper to stack elements, positioned on the corner of page."""
+
+    items = blocks.ListBlock(
+        AlertBlock(),
+        required=True,
+        help_text=_("Toast items"),
+    )
+
+    class Meta:
+        """Meta data"""
+
+        icon = "mail"
+        template = "wagtail_blocks/blocks/toast.html"
+
+
+class ListItem(blocks.StructBlock):
+    """List item"""
+
+    image = ImageBlock(
+        required=False,
+        help_text=_("Item image"),
+    )
+    title = blocks.CharBlock(
+        max_length=64,
+        required=True,
+        help_text=_("Item title"),
+    )
+    description = blocks.CharBlock(
+        max_length=128,
+        required=False,
+        help_text=_("Item description"),
+    )
+    page = blocks.PageChooserBlock(
+        required=False,
+        help_text=_("Item internal link"),
+    )
+    url = blocks.URLBlock(
+        required=False,
+        help_text=_("Item external link"),
+    )
+    actions = blocks.ListBlock(
+        ButtonBlock(),
+        required=False,
+        help_text=_("Actions"),
+    )
+
+
+class ListBlock(blocks.StructBlock):
+    """List is a vertical layout to display information in rows."""
+
+    title = blocks.CharBlock(
+        max_length=64,
+        required=True,
+        help_text=_("List title"),
+    )
+    items = blocks.ListBlock(
+        ListItem(),
+        required=True,
+        help_text=_("List items"),
+    )
+
+    class Meta:
+        """Meta data"""
+
+        icon = "list-ol"
+        template = "wagtail_blocks/blocks/list.html"

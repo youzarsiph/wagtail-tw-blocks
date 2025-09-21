@@ -1,8 +1,8 @@
 {% load i18n %}
 
-<div class="my-4">
+<div class="my-4 not-prose">
   <div
-    class="not-prose card card-sm lg:card-md 2xl:card-lg border border-base-300 bg-base-200"
+    class="card card-sm lg:card-md 2xl:card-lg border border-base-300 bg-base-200"
   >
     <div class="flex items-center justify-between gap-4 p-2">
       {% if self.show_window_btns %}
@@ -13,35 +13,48 @@
       </div>
       {% endif %}
 
-      <!---->
-      {% if self.show_language %}
       <div
         class="tooltip tooltip-bottom tooltip-primary"
-        data-tip="{% trans 'Programming language' %}"
+        data-tip="{% trans 'File name' %}"
       >
-        <span class="badge badge-sm badge-primary lg:badge-md">
-          <i data-lucide="terminal" class="size-4 lg:size-5"></i>
-          <span class="sr-only">{% trans 'Programming language' %}</span>
-          <span>{{ self.language|title }}</span>
+        <span
+          class="badge font-mono font-semibold badge-soft badge-sm badge-primary lg:badge-md"
+        >
+          <span class="sr-only">{% trans 'File name: ' %}</span>
+          <span>{{ self.file_name }}</span>
         </span>
       </div>
-      {% endif %}
 
-      <!---->
-      {% if self.show_language %}
-      <div
-        class="tooltip tooltip-left tooltip-primary rtl:tooltip-right"
-        data-tip="{% trans 'Copy' %}"
-      >
-        <button
-          class="btn btn-xs btn-copy btn-soft btn-square btn-primary lg:btn-sm"
-          data-clipboard-text="{{ self.code }}"
+      <div class="flex items-center justify-between gap-4">
+        {% if self.show_language %}
+        <div
+          class="tooltip tooltip-left rtl:tooltip-right"
+          data-tip="{% trans 'Programming language' %}"
         >
-          <span class="sr-only">{% trans 'Copy' %}</span>
-          <i data-lucide="copy" class="size-4 lg:size-5"></i>
-        </button>
+          <span class="btn btn-xs btn-copy btn-ghost lg:btn-sm">
+            <i data-lucide="terminal" class="size-4 lg:size-5"></i>
+            <span class="sr-only">{% trans 'Programming language' %}:</span>
+            {{ self.language|title }}
+          </span>
+        </div>
+        {% endif %}
+
+        <!---->
+        {% if self.show_copy_btn %}
+        <div
+          class="tooltip tooltip-left rtl:tooltip-right"
+          data-tip="{% trans 'Copy' %}"
+        >
+          <button
+            class="btn btn-xs btn-copy btn-ghost btn-square lg:btn-sm"
+            data-clipboard-text="{{ self.code }}"
+          >
+            <span class="sr-only">{% trans 'Copy' %}</span>
+            <i data-lucide="copy" class="size-4 lg:size-5"></i>
+          </button>
+        </div>
+        {% endif %}
       </div>
-      {% endif %}
     </div>
 
     <pre

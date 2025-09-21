@@ -1,15 +1,20 @@
-<div class="my-4">
-  <div class="not-prose grid gap-4">
+<div class="my-4 not-prose">
+  <div class="grid gap-4">
     {% for item in self.items %}
     <div
-      class="collapse collapse-{{ self.variant }} bg-base-100 rounded-box border-base-300 border shadow-sm"
+      class="collapse collapse-{{ self.style }} bg-base-100 rounded-box border-base-300 border shadow-sm"
     >
       <input
         type="radio"
         name="{{ self.name|slugify }}"
         checked="{{ item.is_expanded }}"
       />
-      <div class="collapse-title text-primary">{{ item.title }}</div>
+      <div class="collapse-title text-primary">
+        <span class="flex items-center gap-2">
+          <i data-lucide="{{ item.icon }}" class="size-4 lg:size-6"></i>
+          {{ item.title }}
+        </span>
+      </div>
       <div class="collapse-content">
         <div class="prose prose-sm">{{ item.content }}</div>
       </div>

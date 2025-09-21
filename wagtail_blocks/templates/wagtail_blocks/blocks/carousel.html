@@ -1,14 +1,14 @@
 {% load i18n wagtailembeds_tags wagtailimages_tags %}
 
-<div class="my-4">
+<div class="my-4 not-prose">
   <div
-    class="not-prose carousel size-full {% if self.is_vertical %} carousel-vertical {% endif %} rounded-box overflow-clip"
+    class="carousel size-full {% if self.is_vertical %} carousel-vertical {% endif %} rounded-box"
   >
     {% for item in self.items %}
     <div class="carousel-item relative w-full">
       {% if item.image %}
       <figure class="skeleton size-full">
-        {% image item.image scale-100 %}
+        {% image item.image fill-1920x1080 %}
 
         <!---->
         {% if item.caption %}

@@ -1,0 +1,55 @@
+{% load i18n wagtailcore_tags wagtailimages_tags %}
+
+<div class="not-prose my-4">
+  <ol class="list bg-base-100 rounded-box shadow-sm">
+    <li
+      role="heading"
+      aria-level="1"
+      class="p-4 pb-2 text-xs opacity-60 tracking-wide"
+    >
+      {{ self.title }}
+    </li>
+    {% for item in self.items %}
+    <li class="list-row relative">
+      {% if item.page or item.url %}
+      <a
+        href="{% if item.page %}{% pageurl item.page %}{% else %}{{ item.url }}{% endif %}"
+        class="absolute inset-0"
+      >
+        <span class="sr-only">{% trans 'View' %}</span>
+      </a>
+      {% endif %}
+
+      <!---->
+      {% if item.image %}
+      <figure class="size-12 overflow-clip rounded-field">
+        {% image item.image fill-1080x1080 %}
+      </figure>
+      {% endif %}
+
+      <div>
+        <h2>{{ item.title }}</h2>
+
+        {% if item.description %}
+        <p class="text-xs opacity-60">{{ item.description }}</p>
+        {% endif %}
+      </div>
+
+      {% for action in item.actions %}
+      <div
+        class="tooltip tooltip-left tooltip-{{ action.color }} rtl:tooltip-right"
+        data-tip="{{ action.title }}"
+      >
+        <a
+          href="{% if action.page %}{% pageurl action.page %}{% else %}{{ action.url }}{% endif %}"
+          class="btn btn-xs btn-square btn-{{ action.color }} md:btn-sm lg:btn-md"
+        >
+          <span class="sr-only">{{ action.title }}</span>
+          <i data-lucide="{{ action.icon }}" class="size-4 lg:size-6"></i>
+        </a>
+      </div>
+      {% endfor %}
+    </li>
+    {% endfor %}
+  </ol>
+</div>

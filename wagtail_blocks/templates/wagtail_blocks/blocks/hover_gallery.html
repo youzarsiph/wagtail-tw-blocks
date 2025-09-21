@@ -1,0 +1,18 @@
+{% load wagtailimages_tags %}
+
+<div class="not-prose my-4">
+  <ol class="hover-gallery">
+    {% for item in self.items %}
+    <li>
+      <figure>
+        {% image item.image fill-1920x1080 %}
+
+        <!---->
+        {% if item.caption %}
+        <figcaption>{{ item.caption }}</figcaption>
+        {% endif %}
+      </figure>
+    </li>
+    {% endfor %}
+  </ol>
+</div>

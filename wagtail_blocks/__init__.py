@@ -3,12 +3,12 @@
 from django.utils.translation import gettext_lazy as _
 
 # Constants
-ACCORDION_STYLE_VARIANTS = [
+ACCORDION_STYLES = [
     ("plus", _("Plus")),
     ("arrow", _("Arrow")),
 ]
 
-ALERT_STYLE_VARIANTS = [
+ALERT_STYLES = [
     ("soft", _("Soft")),
     ("outline", _("Outline")),
 ]
@@ -18,6 +18,22 @@ ALERT_LEVELS = [
     ("success", _("Success")),
     ("warning", _("Warning")),
     ("error", _("Error")),
+]
+
+COLOR_CHOICES = [
+    ("primary", _("Primary")),
+    ("secondary", _("Secondary")),
+    ("accent", _("Accent")),
+    ("success", _("Success")),
+    ("info", _("Info")),
+    ("warning", _("Warning")),
+    ("error", _("Error")),
+]
+
+TAB_STYLES = [
+    ("border", _("Border")),
+    ("box", _("Box")),
+    ("lift", _("Lift")),
 ]
 
 # The popular programming languages
