@@ -13,8 +13,9 @@
       {% for action in self.actions %}
       <a
         href="{% if action.page %}{% pageurl action.page %}{% else %}{{ action.url }}{% endif %}"
-        class="btn btn-xs {% if self.style != 'soft' %} btn-soft {% endif %} btn-{{ self.level }} md:btn-sm lg:btn-md"
+        class="btn btn-xs btn-soft btn-{{ action.color }} md:btn-sm lg:btn-md"
       >
+        <i data-lucide="{{ action.icon }}" class="size-4 lg:size-6"></i>
         {{ action.label }}
       </a>
       {% endfor %}
