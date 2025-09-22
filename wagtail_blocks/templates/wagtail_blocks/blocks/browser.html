@@ -1,0 +1,15 @@
+{% load wagtailimages_tags %}
+
+<div class="my-4 not-prose">
+  <div class="mockup-browser border border-base-300 w-full">
+    <div class="mockup-browser-toolbar">
+      {% if self.show_url %}
+      <div class="input input-primary">{{ self.url }}</div>
+      {% endif %}
+    </div>
+
+    <div class="grid place-content-center">
+      {% image self.wallpaper fill-1920x1080 %}
+    </div>
+  </div>
+</div>

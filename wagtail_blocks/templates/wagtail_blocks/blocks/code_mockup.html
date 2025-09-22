@@ -1,0 +1,20 @@
+{% load i18n %}
+
+<div class="my-4 not-prose">
+  <div class="mockup-code w-full relative">
+    <div class="absolute top-4 right-4">
+      <div
+        class="tooltip tooltip-left rtl:tooltip-right"
+        data-tip="{% trans 'Programming language' %}"
+      >
+        <span class="btn btn-xs btn-copy btn-ghost lg:btn-sm">
+          <i data-lucide="terminal" class="size-4 lg:size-5"></i>
+          <span class="sr-only">{% trans 'Programming language' %}:</span>
+          {{ self.language|title }}
+        </span>
+      </div>
+    </div>
+
+    <pre><code class="language-{{ self.language }}">{{ self.code }}</code></pre>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+{% load wagtailimages_tags %}
+
+<div class="my-4 not-prose">
+  <div class="mockup-phone border-primary">
+    {% if self.show_camera %}
+    <div class="mockup-phone-camera"></div>
+    {% endif %}
+
+    <div class="mockup-phone-display">{% image self.wallpaper scale-100 %}</div>
+  </div>
+</div>

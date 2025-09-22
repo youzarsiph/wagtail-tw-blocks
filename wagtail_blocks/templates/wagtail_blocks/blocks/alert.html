@@ -3,7 +3,7 @@
 <div class="my-4 not-prose">
   <div
     role="alert"
-    class="alert alert-{{ self.style }} alert-{{ self.level }} {% if self.is_vertical %} alert-vertical {% endif %}"
+    class="alert {% if self.style %}alert-{{ self.style }}{% endif %} alert-{{ self.level }} {% if self.is_vertical %} alert-vertical {% endif %}"
   >
     <i data-lucide="{{ self.icon }}" class="size-4 lg:size-6"></i>
 
@@ -12,7 +12,7 @@
     <div class="flex items-center gap-1 flex-wrap">
       {% for action in self.actions %}
       <a
-        href="{% if action.page %}{% pageurl action.page %}{% else %}{{ action.url }}{% endif %}"
+        href="{% if action.page %}{% pageurl action.page %}{% elif action.url %}{{ action.url }}{% else %}#{% endif %}"
         class="btn btn-xs btn-soft btn-{{ action.color }} md:btn-sm lg:btn-md"
       >
         <i data-lucide="{{ action.icon }}" class="size-4 lg:size-6"></i>

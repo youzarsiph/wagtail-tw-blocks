@@ -17,7 +17,7 @@
 
   {% if self.main %}
   <a
-    href="{% if self.main.page %}{% pageurl self.main.page %}{% else %}{{ self.main.url }}{% endif %}"
+    href="{% if self.main.page %}{% pageurl self.main.page %}{% elif self.main.url %}{{ self.main.url }}{% else %}#{% endif %}"
     class="fab-main-action btn btn-circle btn-sm btn-{{ self.main.color }} sm:btn-md lg:btn-lg xl:btn-xl"
   >
     <span class="sr-only">{{ self.main.label }}</span>
@@ -32,7 +32,7 @@
     data-tip="{{ item.label }}"
   >
     <a
-      href="{% if item.page %}{% pageurl item.page %}{% else %}{{ item.url }}{% endif %}"
+      href="{% if item.page %}{% pageurl item.page %}{% elif item.url %}{{ item.url }}{% else %}#{% endif %}"
       class="btn btn-circle btn-xs btn-{{ item.color }} sm:btn-sm xl:btn-lg 2xl:btn-xl"
     >
       <span class="sr-only">{{ item.label }}</span>

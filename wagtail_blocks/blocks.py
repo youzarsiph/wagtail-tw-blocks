@@ -478,7 +478,8 @@ class TabsBlock(blocks.StructBlock):
     )
     style = blocks.ChoiceBlock(
         choices=TAB_STYLES,
-        required=False,
+        default="border",
+        required=True,
         help_text=_("Tab style"),
     )
     items = blocks.ListBlock(
@@ -561,3 +562,83 @@ class ListBlock(blocks.StructBlock):
 
         icon = "list-ol"
         template = "wagtail_blocks/blocks/list.html"
+
+
+class PhoneMockupBlock(blocks.StructBlock):
+    """Phone mockup shows a mockup of an iPhone."""
+
+    show_camera = blocks.BooleanBlock(
+        default=True,
+        required=False,
+        help_text=_("Wether to show or hide camera"),
+    )
+    wallpaper = ImageBlock(
+        required=True,
+        help_text=_("Phone wallpaper"),
+    )
+
+    class Meta:
+        """Meta data"""
+
+        icon = "mobile-alt"
+        template = "wagtail_blocks/blocks/phone.html"
+
+
+class BrowserMockupBlock(blocks.StructBlock):
+    """Browser mockup shows a box that looks like a browser window."""
+
+    show_url = blocks.BooleanBlock(
+        default=True,
+        required=False,
+        help_text=_("Wether to show or hide toolbar"),
+    )
+    url = blocks.URLBlock(
+        required=True,
+        help_text=_("Browser URL"),
+    )
+    wallpaper = ImageBlock(
+        required=True,
+        help_text=_("Browser wallpaper"),
+    )
+
+    class Meta:
+        """Meta data"""
+
+        icon = "desktop"
+        template = "wagtail_blocks/blocks/browser.html"
+
+
+class WindowMockupBlock(blocks.StructBlock):
+    """Window mockup shows a box that looks like an operating system window."""
+
+    wallpaper = ImageBlock(
+        required=True,
+        help_text=_("Window wallpaper"),
+    )
+
+    class Meta:
+        """Meta data"""
+
+        icon = "desktop"
+        template = "wagtail_blocks/blocks/window.html"
+
+
+class CodeMockupBlock(blocks.StructBlock):
+    """Code mockup is used to show a block of code in a box that looks like a code editor."""
+
+    language = blocks.ChoiceBlock(
+        choices=PROGRAMMING_LANGUAGES,
+        default="auto",
+        required=True,
+        help_text=_("Programming language"),
+    )
+    code = blocks.TextBlock(
+        required=True,
+        help_text=_("Code content"),
+    )
+
+    class Meta:
+        """Meta data"""
+
+        icon = "code"
+        template = "wagtail_blocks/blocks/code_mockup.html"

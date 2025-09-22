@@ -11,11 +11,12 @@
     </li>
     {% for item in self.items %}
     <li class="list-row relative">
-      {% if item.page or item.url %}
-      <a
-        href="{% if item.page %}{% pageurl item.page %}{% else %}{{ item.url }}{% endif %}"
-        class="absolute inset-0"
-      >
+      {% if item.page %}
+      <a href="{% pageurl item.page %}" class="absolute inset-0">
+        <span class="sr-only">{% trans 'View' %}</span>
+      </a>
+      {% elif item.url %}
+      <a href="{{ item.url }}" class="absolute inset-0">
         <span class="sr-only">{% trans 'View' %}</span>
       </a>
       {% endif %}
@@ -41,7 +42,7 @@
         data-tip="{{ action.title }}"
       >
         <a
-          href="{% if action.page %}{% pageurl action.page %}{% else %}{{ action.url }}{% endif %}"
+          href="{% if action.page %}{% pageurl action.page %}{% elif action.url %}{{ action.url }}{% else %}#{% endif %}"
           class="btn btn-xs btn-square btn-{{ action.color }} md:btn-sm lg:btn-md"
         >
           <span class="sr-only">{{ action.title }}</span>

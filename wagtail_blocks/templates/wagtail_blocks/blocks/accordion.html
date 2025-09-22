@@ -2,7 +2,7 @@
   <div class="grid gap-4">
     {% for item in self.items %}
     <div
-      class="collapse collapse-{{ self.style }} bg-base-100 rounded-box border-base-300 border shadow-sm"
+      class="collapse {% if self.style %}collapse-{{ self.style }}{% endif %} bg-base-100 rounded-box border-base-300 border shadow-sm"
     >
       <input
         type="radio"
