@@ -1,0 +1,19 @@
+{% load wagtailimages_tags %}
+
+<figure>
+  {% image self.image fill-1920x1080 loading="lazy" %}
+
+  <!---->
+  {% if self.caption %}
+  <figcaption class="text-xs md:text-sm xl:text-base">
+    {{ self.caption }}
+
+    <!---->
+    {% if self.attribution %}
+    <!---->
+    - {{ self.attribution }}
+    <!---->
+    {% endif %}
+  </figcaption>
+  {% endif %}
+</figure>

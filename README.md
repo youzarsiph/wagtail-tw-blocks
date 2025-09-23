@@ -31,6 +31,10 @@
 - **Tabs:** Tabbed content sections.
 - **Timeline:** Chronological event listings.
 - **Toast:** Temporary notification messages.
+- **Image:** Responsive images with optional captions.
+- **Browser Mockup:** Browser window frame for screenshots or web content.
+- **Phone Mockup:** Mobile phone frame for app screenshots or mobile content.
+- **Window Mockup:** Desktop window frame for application screenshots or desktop content.
 
 ---
 

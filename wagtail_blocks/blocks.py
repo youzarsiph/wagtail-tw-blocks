@@ -4,7 +4,7 @@ from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 from wagtail import blocks
 from wagtail.embeds.blocks import EmbedBlock
-from wagtail.images.blocks import ImageBlock
+from wagtail.images.blocks import ImageBlock as WImageBlock
 
 from wagtail_blocks import (
     ACCORDION_STYLES,
@@ -39,6 +39,31 @@ SHOW_WINDOW_CONTROLS = getattr(
     "WAGTAIL_BLOCKS_SHOW_WINDOW_CONTROLS",
     True,
 )
+
+
+class ImageBlock(blocks.StructBlock):
+    """Image block with caption"""
+
+    image = WImageBlock(
+        required=True,
+        help_text=_("Image"),
+    )
+    caption = blocks.CharBlock(
+        max_length=128,
+        required=False,
+        help_text=_("Image caption"),
+    )
+    attribution = blocks.CharBlock(
+        max_length=128,
+        required=False,
+        help_text=_("Image attribution"),
+    )
+
+    class Meta:
+        """Meta data"""
+
+        icon = "image"
+        template = "wagtail_blocks/blocks/image.html"
 
 
 class ButtonBlock(blocks.StructBlock):
