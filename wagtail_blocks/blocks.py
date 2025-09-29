@@ -203,7 +203,7 @@ class AlertBlock(blocks.StructBlock):
 class CarouselItem(blocks.StructBlock):
     """Carousel Items"""
 
-    image = ImageBlock(
+    image = WImageBlock(
         required=False,
         help_text=_("Image"),
     )
@@ -284,11 +284,11 @@ class CodeBlock(blocks.StructBlock):
 class DiffBlock(blocks.StructBlock):
     """Diff component shows a side-by-side comparison of two items."""
 
-    item_1 = ImageBlock(
+    item_1 = WImageBlock(
         required=True,
         help_text=_("Diff Item 1"),
     )
-    item_2 = ImageBlock(
+    item_2 = WImageBlock(
         required=True,
         help_text=_("Diff Item 2"),
     )
@@ -337,7 +337,7 @@ class FABBlock(blocks.StructBlock):
 class HoverGalleryItem(blocks.StructBlock):
     """Hover gallery items"""
 
-    image = ImageBlock(
+    image = WImageBlock(
         required=True,
         help_text=_("Image"),
     )
@@ -539,7 +539,7 @@ class ToastBlock(blocks.StructBlock):
 class ListItem(blocks.StructBlock):
     """List item"""
 
-    image = ImageBlock(
+    image = WImageBlock(
         required=False,
         help_text=_("Item image"),
     )
@@ -597,7 +597,7 @@ class PhoneMockupBlock(blocks.StructBlock):
         required=False,
         help_text=_("Wether to show or hide camera"),
     )
-    wallpaper = ImageBlock(
+    wallpaper = WImageBlock(
         required=True,
         help_text=_("Phone wallpaper"),
     )
@@ -621,7 +621,7 @@ class BrowserMockupBlock(blocks.StructBlock):
         required=True,
         help_text=_("Browser URL"),
     )
-    wallpaper = ImageBlock(
+    wallpaper = WImageBlock(
         required=True,
         help_text=_("Browser wallpaper"),
     )
@@ -636,7 +636,7 @@ class BrowserMockupBlock(blocks.StructBlock):
 class WindowMockupBlock(blocks.StructBlock):
     """Window mockup shows a box that looks like an operating system window."""
 
-    wallpaper = ImageBlock(
+    wallpaper = WImageBlock(
         required=True,
         help_text=_("Window wallpaper"),
     )
