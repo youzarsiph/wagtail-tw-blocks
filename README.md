@@ -4,8 +4,6 @@
 [![CD](https://github.com/youzarsiph/wagtail-tw-blocks/actions/workflows/cd.yml/badge.svg)](https://github.com/youzarsiph/wagtail-tw-blocks/actions/workflows/cd.yml)
 [![Code Style: Black](https://github.com/youzarsiph/wagtail-tw-blocks/actions/workflows/black.yml/badge.svg)](https://github.com/youzarsiph/wagtail-tw-blocks/actions/workflows/black.yml)
 [![Code Linting: Ruff](https://github.com/youzarsiph/wagtail-tw-blocks/actions/workflows/ruff.yml/badge.svg)](https://github.com/youzarsiph/wagtail-tw-blocks/actions/workflows/ruff.yml)
-[![Docker Image](https://github.com/youzarsiph/wagtail-tw-blocks/actions/workflows/docker-image.yml/badge.svg)](https://github.com/youzarsiph/wagtail-tw-blocks/actions/workflows/docker-image.yml)
-[![Docker Publish](https://github.com/youzarsiph/wagtail-tw-blocks/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/youzarsiph/wagtail-tw-blocks/actions/workflows/docker-publish.yml)
 [![PyPI - Version](https://img.shields.io/pypi/v/wagtail-tw-blocks?logo=pypi&logoColor=white)](https://pypi.org/project/wagtail-tw-blocks/)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/wagtail-tw-blocks?logo=python&logoColor=white)](https://pypi.org/project/wagtail-tw-blocks/)
 [![PyPI - Downloads](https://img.shields.io/pypi/dm/wagtail-tw-blocks?logo=pypi&logoColor=white)](https://pypi.org/project/wagtail-tw-blocks/)
