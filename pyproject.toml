@@ -6,6 +6,9 @@ authors = ["Yousef Abu Shanab <josephyousef249@gmail.com>"]
 license = "MIT"
 readme = "README.md"
 packages = [{ include = "wagtail_blocks" }]
+homepage = "https://github.com/youzarsiph/wagtail-tw-blocks"
+repository = "https://github.com/youzarsiph/wagtail-tw-blocks"
+documentation = "https://github.com/youzarsiph/wagtail-tw-blocks"
 
 [tool.poetry.dependencies]
 python = ">=3.10"

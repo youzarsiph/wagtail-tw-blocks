@@ -17,6 +17,12 @@
 
 ---
 
+## Demo
+
+[![Demo](https://img.youtube.com/vi/0b0dZByyPok/maxresdefault.jpg)](https://youtu.be/0b0dZByyPok)
+
+---
+
 ## Available blocks
 
 - **Accordion (Collapse):** Expandable/collapsible sections for FAQs or structured content.
