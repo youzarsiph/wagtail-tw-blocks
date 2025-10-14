@@ -1,0 +1,394 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-10-10 10:51-0700\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Arabic <LL@li.org>\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+
+#: .\items\models.py:35 .\wagtail_blocks\blocks.py:119
+#: .\wagtail_blocks\blocks.py:388
+msgid "Item content"
+msgstr "محتوى العنصر"
+
+#: .\wagtail_blocks\__init__.py:7
+msgid "Plus"
+msgstr "إضافة"
+
+#: .\wagtail_blocks\__init__.py:8
+msgid "Arrow"
+msgstr "سهم"
+
+#: .\wagtail_blocks\__init__.py:12
+msgid "Soft"
+msgstr "ناعم"
+
+#: .\wagtail_blocks\__init__.py:13
+msgid "Outline"
+msgstr "محيط"
+
+#: .\wagtail_blocks\__init__.py:14
+msgid "Dash"
+msgstr "شرطة"
+
+#: .\wagtail_blocks\__init__.py:18 .\wagtail_blocks\__init__.py:29
+msgid "Info"
+msgstr "معلومة"
+
+#: .\wagtail_blocks\__init__.py:19 .\wagtail_blocks\__init__.py:28
+msgid "Success"
+msgstr "نجاح"
+
+#: .\wagtail_blocks\__init__.py:20 .\wagtail_blocks\__init__.py:30
+msgid "Warning"
+msgstr "تحذير"
+
+#: .\wagtail_blocks\__init__.py:21 .\wagtail_blocks\__init__.py:31
+msgid "Error"
+msgstr "خطأ"
+
+#: .\wagtail_blocks\__init__.py:25
+msgid "Primary"
+msgstr "أساسي"
+
+#: .\wagtail_blocks\__init__.py:26
+msgid "Secondary"
+msgstr "ثانوي"
+
+#: .\wagtail_blocks\__init__.py:27
+msgid "Accent"
+msgstr "تأكيد"
+
+#: .\wagtail_blocks\__init__.py:35
+msgid "Border"
+msgstr "حد"
+
+#: .\wagtail_blocks\__init__.py:36
+msgid "Box"
+msgstr "صندوق"
+
+#: .\wagtail_blocks\__init__.py:37
+msgid "Lift"
+msgstr "رفع"
+
+#: .\wagtail_blocks\__init__.py:42
+msgid "Auto"
+msgstr "تلقائي"
+
+#: .\wagtail_blocks\__init__.py:69
+msgid "Plain text"
+msgstr "نص عادي"
+
+#: .\wagtail_blocks\blocks.py:49 .\wagtail_blocks\blocks.py:208
+#: .\wagtail_blocks\blocks.py:342 .\wagtail_blocks\blocks.py:482
+msgid "Image"
+msgstr "صورة"
+
+#: .\wagtail_blocks\blocks.py:54
+msgid "Image caption"
+msgstr "تعليق الصورة"
+
+#: .\wagtail_blocks\blocks.py:59
+msgid "Image attribution"
+msgstr "إسناد الصورة"
+
+#: .\wagtail_blocks\blocks.py:76 .\wagtail_blocks\blocks.py:105
+#: .\wagtail_blocks\blocks.py:159 .\wagtail_blocks\blocks.py:383
+#: .\wagtail_blocks\blocks.py:435
+msgid "Icon name (lucide icons)"
+msgstr "اسم الأيقونة (أيقونات Lucide)"
+
+#: .\wagtail_blocks\blocks.py:81
+msgid "Action label"
+msgstr "تسمية الإجراء"
+
+#: .\wagtail_blocks\blocks.py:85
+msgid "Action internal link"
+msgstr "رابط داخلي للإجراء"
+
+#: .\wagtail_blocks\blocks.py:89
+msgid "Action external link"
+msgstr "رابط خارجي للإجراء"
+
+#: .\wagtail_blocks\blocks.py:94
+msgid "Action button color"
+msgstr "لون زر الإجراء"
+
+#: .\wagtail_blocks\blocks.py:110
+msgid "Whether to show or hide item content"
+msgstr "تحديد ما إذا كان سيتم إظهار محتوى العنصر أو إخفاؤه"
+
+#: .\wagtail_blocks\blocks.py:115 .\wagtail_blocks\blocks.py:471
+#: .\wagtail_blocks\blocks.py:549
+msgid "Item title"
+msgstr "عنوان العنصر"
+
+#: .\wagtail_blocks\blocks.py:132
+msgid "Accordion name"
+msgstr "اسم الأكورديون"
+
+#: .\wagtail_blocks\blocks.py:137
+msgid "Accordion style"
+msgstr "نمط الأكورديون"
+
+#: .\wagtail_blocks\blocks.py:142
+msgid "Accordion items"
+msgstr "عناصر الأكورديون"
+
+#: .\wagtail_blocks\blocks.py:164
+msgid "Designates if alert is vertical or horizontal (default)"
+msgstr "يُحدّد ما إذا كان التنبيه عموديًا أم أفقيًا (الإعداد الافتراضي)"
+
+#: .\wagtail_blocks\blocks.py:169
+msgid "Alert style"
+msgstr "نمط التنبيه"
+
+#: .\wagtail_blocks\blocks.py:174
+msgid "Alert level"
+msgstr "مستوى التنبيه"
+
+#: .\wagtail_blocks\blocks.py:178
+msgid "Alert message"
+msgstr "رسالة التنبيه"
+
+#: .\wagtail_blocks\blocks.py:193
+msgid "Alert actions"
+msgstr "إجراءات التنبيه"
+
+#: .\wagtail_blocks\blocks.py:212 .\wagtail_blocks\blocks.py:483
+msgid "Video"
+msgstr "فيديو"
+
+#: .\wagtail_blocks\blocks.py:217 .\wagtail_blocks\blocks.py:347
+msgid "Caption"
+msgstr "تعليق"
+
+#: .\wagtail_blocks\blocks.py:227
+msgid "Designates if carousel is vertical or horizontal (default)"
+msgstr "يُحدّد ما إذا كان عرض الشرائح عموديًا أم أفقيًا (الإعداد الافتراضي)"
+
+#: .\wagtail_blocks\blocks.py:232
+msgid "Carousel items"
+msgstr "عناصر عرض الشرائح"
+
+#: .\wagtail_blocks\blocks.py:248
+msgid "Whether to show or hide which programming language is used"
+msgstr "تحديد إظهار أو إخفاء لغة البرمجة المستخدمة"
+
+#: .\wagtail_blocks\blocks.py:253
+msgid "Whether to show or hide copy buttons"
+msgstr "تحديد إظهار أو إخفاء أزرار النسخ"
+
+#: .\wagtail_blocks\blocks.py:258
+msgid "Whether to show or hide window buttons"
+msgstr "تحديد إظهار أو إخفاء أزرار النافذة"
+
+#: .\wagtail_blocks\blocks.py:264
+#: .\wagtail_blocks\templates\wagtail_blocks\blocks\code.html:18
+msgid "File name"
+msgstr "اسم الملف"
+
+#: .\wagtail_blocks\blocks.py:270 .\wagtail_blocks\blocks.py:658
+#: .\wagtail_blocks\templates\wagtail_blocks\blocks\code.html:32
+#: .\wagtail_blocks\templates\wagtail_blocks\blocks\code.html:36
+#: .\wagtail_blocks\templates\wagtail_blocks\blocks\code_mockup.html:8
+#: .\wagtail_blocks\templates\wagtail_blocks\blocks\code_mockup.html:12
+msgid "Programming language"
+msgstr "لغة البرمجة"
+
+#: .\wagtail_blocks\blocks.py:274 .\wagtail_blocks\blocks.py:662
+msgid "Code content"
+msgstr "محتوى الكود"
+
+#: .\wagtail_blocks\blocks.py:289
+msgid "Diff Item 1"
+msgstr "عنصر الفرق 1"
+
+#: .\wagtail_blocks\blocks.py:293
+msgid "Diff Item 2"
+msgstr "عنصر الفرق 2"
+
+#: .\wagtail_blocks\blocks.py:314
+msgid "Designates if FAB is vertical or flower shaped (quarter circle)"
+msgstr "يُحدّد ما إذا كان الزر العائم عموديًا أم على شكل زهرة (ربع دائرة)"
+
+#: .\wagtail_blocks\blocks.py:318
+msgid "FAB toggle btn"
+msgstr "زر تبديل الزر العائم"
+
+#: .\wagtail_blocks\blocks.py:322
+msgid "FAB main action"
+msgstr "الإجراء الرئيسي للزر العائم"
+
+#: .\wagtail_blocks\blocks.py:327
+msgid "FAB items"
+msgstr "عناصر الزر العائم"
+
+#: .\wagtail_blocks\blocks.py:362
+msgid "Gallery items"
+msgstr "عناصر المعرض"
+
+#: .\wagtail_blocks\blocks.py:377
+msgid "Item date"
+msgstr "تاريخ العنصر"
+
+#: .\wagtail_blocks\blocks.py:398
+msgid "Designates if timeline is compact"
+msgstr "يُحدّد ما إذا كان المخطط الزمني مضغوطًا"
+
+#: .\wagtail_blocks\blocks.py:403
+msgid "Designates if timeline is vertical or horizontal (default)"
+msgstr "يُحدّد ما إذا كان المخطط الزمني عموديًا أم أفقيًا (الإعداد الافتراضي)"
+
+#: .\wagtail_blocks\blocks.py:408
+msgid "Designates if dates should snap to icons"
+msgstr "يُحدّد ما إذا كان يجب محاذاة التواريخ مع الأيقونات"
+
+#: .\wagtail_blocks\blocks.py:413
+msgid "Timeline items"
+msgstr "عناصر المخطط الزمني"
+
+#: .\wagtail_blocks\blocks.py:429
+msgid "Item name"
+msgstr "اسم العنصر"
+
+#: .\wagtail_blocks\blocks.py:440
+msgid "Item color"
+msgstr "لون العنصر"
+
+#: .\wagtail_blocks\blocks.py:450
+msgid "Designates if Steps is vertical or horizontal (default)"
+msgstr "يُحدّد ما إذا كانت الخطوات عمودية أم أفقية (الإعداد الافتراضي)"
+
+#: .\wagtail_blocks\blocks.py:455
+msgid "Steps items"
+msgstr "عناصر الخطوات"
+
+#: .\wagtail_blocks\blocks.py:476
+msgid "Designates if tab is selected"
+msgstr "يُحدّد ما إذا كانت علامة التبويب محددة"
+
+#: .\wagtail_blocks\blocks.py:480
+msgid "Alert"
+msgstr "تنبيه"
+
+#: .\wagtail_blocks\blocks.py:481
+msgid "Code"
+msgstr "كود"
+
+#: .\wagtail_blocks\blocks.py:484
+msgid "Rich text"
+msgstr "نص منسّق"
+
+#: .\wagtail_blocks\blocks.py:487
+msgid "Tab Content"
+msgstr "محتوى علامة التبويب"
+
+#: .\wagtail_blocks\blocks.py:497
+msgid "Tab name"
+msgstr "اسم علامة التبويب"
+
+#: .\wagtail_blocks\blocks.py:502
+msgid "Designates if tab buttons position is reversed"
+msgstr "يُحدّد ما إذا كان موضع أزرار التبويبات معكوسًا"
+
+#: .\wagtail_blocks\blocks.py:508
+msgid "Tab style"
+msgstr "نمط التبويب"
+
+#: .\wagtail_blocks\blocks.py:513
+msgid "Tab items"
+msgstr "عناصر التبويب"
+
+#: .\wagtail_blocks\blocks.py:529
+msgid "Toast items"
+msgstr "عناصر الإشعار المنبثق"
+
+#: .\wagtail_blocks\blocks.py:544
+msgid "Item image"
+msgstr "صورة العنصر"
+
+#: .\wagtail_blocks\blocks.py:554
+msgid "Item description"
+msgstr "وصف العنصر"
+
+#: .\wagtail_blocks\blocks.py:558
+msgid "Item internal link"
+msgstr "رابط داخلي للعنصر"
+
+#: .\wagtail_blocks\blocks.py:562
+msgid "Item external link"
+msgstr "رابط خارجي للعنصر"
+
+#: .\wagtail_blocks\blocks.py:567
+msgid "Actions"
+msgstr "إجراءات"
+
+#: .\wagtail_blocks\blocks.py:577
+msgid "List title"
+msgstr "عنوان القائمة"
+
+#: .\wagtail_blocks\blocks.py:582
+msgid "List items"
+msgstr "عناصر القائمة"
+
+#: .\wagtail_blocks\blocks.py:598
+msgid "Whether to show or hide camera"
+msgstr "تحديد إظهار أو إخفاء الكاميرا"
+
+#: .\wagtail_blocks\blocks.py:602
+msgid "Phone wallpaper"
+msgstr "خلفية الهاتف"
+
+#: .\wagtail_blocks\blocks.py:618
+msgid "Whether to show or hide toolbar"
+msgstr "تحديد إظهار أو إخفاء شريط الأدوات"
+
+#: .\wagtail_blocks\blocks.py:622
+msgid "Browser URL"
+msgstr "عنوان المتصفح (URL)"
+
+#: .\wagtail_blocks\blocks.py:626
+msgid "Browser wallpaper"
+msgstr "خلفية المتصفح"
+
+#: .\wagtail_blocks\blocks.py:641
+msgid "Window wallpaper"
+msgstr "خلفية النافذة"
+
+#: .\wagtail_blocks\templates\wagtail_blocks\blocks\carousel.html:30
+#: .\wagtail_blocks\templates\wagtail_blocks\blocks\carousel.html:35
+msgid "Swipe left"
+msgstr "اسحب لليسار"
+
+#: .\wagtail_blocks\templates\wagtail_blocks\blocks\carousel.html:47
+#: .\wagtail_blocks\templates\wagtail_blocks\blocks\carousel.html:52
+msgid "Swipe right"
+msgstr "اسحب لليمين"
+
+#: .\wagtail_blocks\templates\wagtail_blocks\blocks\code.html:23
+msgid "File name: "
+msgstr "اسم الملف: "
+
+#: .\wagtail_blocks\templates\wagtail_blocks\blocks\code.html:46
+#: .\wagtail_blocks\templates\wagtail_blocks\blocks\code.html:52
+msgid "Copy"
+msgstr "نسخ"
+
+#: .\wagtail_blocks\templates\wagtail_blocks\blocks\list.html:16
+#: .\wagtail_blocks\templates\wagtail_blocks\blocks\list.html:20
+msgid "View"
+msgstr "عرض"

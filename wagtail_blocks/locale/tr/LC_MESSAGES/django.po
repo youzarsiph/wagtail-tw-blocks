@@ -1,0 +1,394 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-10-14 01:54-0700\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Turkish <LL@li.org>\n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\items\models.py:35 .\wagtail_blocks\blocks.py:119
+#: .\wagtail_blocks\blocks.py:388
+msgid "Item content"
+msgstr "Öğe içeriği"
+
+#: .\wagtail_blocks\__init__.py:7
+msgid "Plus"
+msgstr "Artı"
+
+#: .\wagtail_blocks\__init__.py:8
+msgid "Arrow"
+msgstr "Ok"
+
+#: .\wagtail_blocks\__init__.py:12
+msgid "Soft"
+msgstr "Yumuşak"
+
+#: .\wagtail_blocks\__init__.py:13
+msgid "Outline"
+msgstr "Kontur"
+
+#: .\wagtail_blocks\__init__.py:14
+msgid "Dash"
+msgstr "Tire"
+
+#: .\wagtail_blocks\__init__.py:18 .\wagtail_blocks\__init__.py:29
+msgid "Info"
+msgstr "Bilgi"
+
+#: .\wagtail_blocks\__init__.py:19 .\wagtail_blocks\__init__.py:28
+msgid "Success"
+msgstr "Başarı"
+
+#: .\wagtail_blocks\__init__.py:20 .\wagtail_blocks\__init__.py:30
+msgid "Warning"
+msgstr "Uyarı"
+
+#: .\wagtail_blocks\__init__.py:21 .\wagtail_blocks\__init__.py:31
+msgid "Error"
+msgstr "Hata"
+
+#: .\wagtail_blocks\__init__.py:25
+msgid "Primary"
+msgstr "Birincil"
+
+#: .\wagtail_blocks\__init__.py:26
+msgid "Secondary"
+msgstr "İkincil"
+
+#: .\wagtail_blocks\__init__.py:27
+msgid "Accent"
+msgstr "Vurgu"
+
+#: .\wagtail_blocks\__init__.py:35
+msgid "Border"
+msgstr "Kenarlık"
+
+#: .\wagtail_blocks\__init__.py:36
+msgid "Box"
+msgstr "Kutu"
+
+#: .\wagtail_blocks\__init__.py:37
+msgid "Lift"
+msgstr "Yükselt"
+
+#: .\wagtail_blocks\__init__.py:42
+msgid "Auto"
+msgstr "Otomatik"
+
+#: .\wagtail_blocks\__init__.py:69
+msgid "Plain text"
+msgstr "Düz metin"
+
+#: .\wagtail_blocks\blocks.py:49 .\wagtail_blocks\blocks.py:208
+#: .\wagtail_blocks\blocks.py:342 .\wagtail_blocks\blocks.py:482
+msgid "Image"
+msgstr "Resim"
+
+#: .\wagtail_blocks\blocks.py:54
+msgid "Image caption"
+msgstr "Resim başlığı"
+
+#: .\wagtail_blocks\blocks.py:59
+msgid "Image attribution"
+msgstr "Resim atfı"
+
+#: .\wagtail_blocks\blocks.py:76 .\wagtail_blocks\blocks.py:105
+#: .\wagtail_blocks\blocks.py:159 .\wagtail_blocks\blocks.py:383
+#: .\wagtail_blocks\blocks.py:435
+msgid "Icon name (lucide icons)"
+msgstr "Simge adı (Lucide ikonları)"
+
+#: .\wagtail_blocks\blocks.py:81
+msgid "Action label"
+msgstr "Eylem etiketi"
+
+#: .\wagtail_blocks\blocks.py:85
+msgid "Action internal link"
+msgstr "Eylem iç bağlantısı"
+
+#: .\wagtail_blocks\blocks.py:89
+msgid "Action external link"
+msgstr "Eylem dış bağlantısı"
+
+#: .\wagtail_blocks\blocks.py:94
+msgid "Action button color"
+msgstr "Eylem düğmesi rengi"
+
+#: .\wagtail_blocks\blocks.py:110
+msgid "Whether to show or hide item content"
+msgstr "Öğe içeriğinin gösterilip gösterilmeyeceğini belirtir"
+
+#: .\wagtail_blocks\blocks.py:115 .\wagtail_blocks\blocks.py:471
+#: .\wagtail_blocks\blocks.py:549
+msgid "Item title"
+msgstr "Öğe başlığı"
+
+#: .\wagtail_blocks\blocks.py:132
+msgid "Accordion name"
+msgstr "Akordeon adı"
+
+#: .\wagtail_blocks\blocks.py:137
+msgid "Accordion style"
+msgstr "Akordeon stili"
+
+#: .\wagtail_blocks\blocks.py:142
+msgid "Accordion items"
+msgstr "Akordeon öğeleri"
+
+#: .\wagtail_blocks\blocks.py:164
+msgid "Designates if alert is vertical or horizontal (default)"
+msgstr "Uyarının dikey mi yatay mı olduğunu belirtir (varsayılan)"
+
+#: .\wagtail_blocks\blocks.py:169
+msgid "Alert style"
+msgstr "Uyarı stili"
+
+#: .\wagtail_blocks\blocks.py:174
+msgid "Alert level"
+msgstr "Uyarı düzeyi"
+
+#: .\wagtail_blocks\blocks.py:178
+msgid "Alert message"
+msgstr "Uyarı mesajı"
+
+#: .\wagtail_blocks\blocks.py:193
+msgid "Alert actions"
+msgstr "Uyarı eylemleri"
+
+#: .\wagtail_blocks\blocks.py:212 .\wagtail_blocks\blocks.py:483
+msgid "Video"
+msgstr "Video"
+
+#: .\wagtail_blocks\blocks.py:217 .\wagtail_blocks\blocks.py:347
+msgid "Caption"
+msgstr "Altyazı"
+
+#: .\wagtail_blocks\blocks.py:227
+msgid "Designates if carousel is vertical or horizontal (default)"
+msgstr "Karusel'in dikey mi yatay mı olduğunu belirtir (varsayılan)"
+
+#: .\wagtail_blocks\blocks.py:232
+msgid "Carousel items"
+msgstr "Karusel öğeleri"
+
+#: .\wagtail_blocks\blocks.py:248
+msgid "Whether to show or hide which programming language is used"
+msgstr "Kullanılan programlama dilinin gösterilip gösterilmeyeceğini belirtir"
+
+#: .\wagtail_blocks\blocks.py:253
+msgid "Whether to show or hide copy buttons"
+msgstr "Kopyalama düğmelerinin gösterilip gösterilmeyeceğini belirtir"
+
+#: .\wagtail_blocks\blocks.py:258
+msgid "Whether to show or hide window buttons"
+msgstr "Pencere düğmelerinin gösterilip gösterilmeyeceğini belirtir"
+
+#: .\wagtail_blocks\blocks.py:264
+#: .\wagtail_blocks\templates\wagtail_blocks\blocks\code.html:18
+msgid "File name"
+msgstr "Dosya adı"
+
+#: .\wagtail_blocks\blocks.py:270 .\wagtail_blocks\blocks.py:658
+#: .\wagtail_blocks\templates\wagtail_blocks\blocks\code.html:32
+#: .\wagtail_blocks\templates\wagtail_blocks\blocks\code.html:36
+#: .\wagtail_blocks\templates\wagtail_blocks\blocks\code_mockup.html:8
+#: .\wagtail_blocks\templates\wagtail_blocks\blocks\code_mockup.html:12
+msgid "Programming language"
+msgstr "Programlama dili"
+
+#: .\wagtail_blocks\blocks.py:274 .\wagtail_blocks\blocks.py:662
+msgid "Code content"
+msgstr "Kod içeriği"
+
+#: .\wagtail_blocks\blocks.py:289
+msgid "Diff Item 1"
+msgstr "Fark öğesi 1"
+
+#: .\wagtail_blocks\blocks.py:293
+msgid "Diff Item 2"
+msgstr "Fark öğesi 2"
+
+#: .\wagtail_blocks\blocks.py:314
+msgid "Designates if FAB is vertical or flower shaped (quarter circle)"
+msgstr ""
+"FAB'ın dikey mi yoksa çeyrek daire (çiçek) biçimli mi olduğunu belirtir"
+
+#: .\wagtail_blocks\blocks.py:318
+msgid "FAB toggle btn"
+msgstr "FAB değiştir düğmesi"
+
+#: .\wagtail_blocks\blocks.py:322
+msgid "FAB main action"
+msgstr "FAB ana eylemi"
+
+#: .\wagtail_blocks\blocks.py:327
+msgid "FAB items"
+msgstr "FAB öğeleri"
+
+#: .\wagtail_blocks\blocks.py:362
+msgid "Gallery items"
+msgstr "Galeri öğeleri"
+
+#: .\wagtail_blocks\blocks.py:377
+msgid "Item date"
+msgstr "Öğe tarihi"
+
+#: .\wagtail_blocks\blocks.py:398
+msgid "Designates if timeline is compact"
+msgstr "Zaman çizelgesinin sıkıştırılmış olup olmadığını belirtir"
+
+#: .\wagtail_blocks\blocks.py:403
+msgid "Designates if timeline is vertical or horizontal (default)"
+msgstr "Zaman çizelgesinin dikey mi yatay mı olduğunu belirtir (varsayılan)"
+
+#: .\wagtail_blocks\blocks.py:408
+msgid "Designates if dates should snap to icons"
+msgstr "Tarihlerin simgelere hizalanıp hizalanmayacağını belirtir"
+
+#: .\wagtail_blocks\blocks.py:413
+msgid "Timeline items"
+msgstr "Zaman çizelgesi öğeleri"
+
+#: .\wagtail_blocks\blocks.py:429
+msgid "Item name"
+msgstr "Öğe adı"
+
+#: .\wagtail_blocks\blocks.py:440
+msgid "Item color"
+msgstr "Öğe rengi"
+
+#: .\wagtail_blocks\blocks.py:450
+msgid "Designates if Steps is vertical or horizontal (default)"
+msgstr "Adımların dikey mi yatay mı olduğunu belirtir (varsayılan)"
+
+#: .\wagtail_blocks\blocks.py:455
+msgid "Steps items"
+msgstr "Adım öğeleri"
+
+#: .\wagtail_blocks\blocks.py:476
+msgid "Designates if tab is selected"
+msgstr "Sekmenin seçili olup olmadığını belirtir"
+
+#: .\wagtail_blocks\blocks.py:480
+msgid "Alert"
+msgstr "Uyarı"
+
+#: .\wagtail_blocks\blocks.py:481
+msgid "Code"
+msgstr "Kod"
+
+#: .\wagtail_blocks\blocks.py:484
+msgid "Rich text"
+msgstr "Zengin metin"
+
+#: .\wagtail_blocks\blocks.py:487
+msgid "Tab Content"
+msgstr "Sekme içeriği"
+
+#: .\wagtail_blocks\blocks.py:497
+msgid "Tab name"
+msgstr "Sekme adı"
+
+#: .\wagtail_blocks\blocks.py:502
+msgid "Designates if tab buttons position is reversed"
+msgstr "Sekme düğmelerinin konumunun ters olup olmadığını belirtir"
+
+#: .\wagtail_blocks\blocks.py:508
+msgid "Tab style"
+msgstr "Sekme stili"
+
+#: .\wagtail_blocks\blocks.py:513
+msgid "Tab items"
+msgstr "Sekme öğeleri"
+
+#: .\wagtail_blocks\blocks.py:529
+msgid "Toast items"
+msgstr "Toast öğeleri"
+
+#: .\wagtail_blocks\blocks.py:544
+msgid "Item image"
+msgstr "Öğe resmi"
+
+#: .\wagtail_blocks\blocks.py:554
+msgid "Item description"
+msgstr "Öğe açıklaması"
+
+#: .\wagtail_blocks\blocks.py:558
+msgid "Item internal link"
+msgstr "Öğenin iç bağlantısı"
+
+#: .\wagtail_blocks\blocks.py:562
+msgid "Item external link"
+msgstr "Öğenin dış bağlantısı"
+
+#: .\wagtail_blocks\blocks.py:567
+msgid "Actions"
+msgstr "Eylemler"
+
+#: .\wagtail_blocks\blocks.py:577
+msgid "List title"
+msgstr "Liste başlığı"
+
+#: .\wagtail_blocks\blocks.py:582
+msgid "List items"
+msgstr "Liste öğeleri"
+
+#: .\wagtail_blocks\blocks.py:598
+msgid "Whether to show or hide camera"
+msgstr "Kameranın gösterilip gösterilmeyeceğini belirtir"
+
+#: .\wagtail_blocks\blocks.py:602
+msgid "Phone wallpaper"
+msgstr "Telefon duvar kağıdı"
+
+#: .\wagtail_blocks\blocks.py:618
+msgid "Whether to show or hide toolbar"
+msgstr "Araç çubuğunun gösterilip gösterilmeyeceğini belirtir"
+
+#: .\wagtail_blocks\blocks.py:622
+msgid "Browser URL"
+msgstr "Tarayıcı URL’si"
+
+#: .\wagtail_blocks\blocks.py:626
+msgid "Browser wallpaper"
+msgstr "Tarayıcı duvar kağıdı"
+
+#: .\wagtail_blocks\blocks.py:641
+msgid "Window wallpaper"
+msgstr "Pencere duvar kağıdı"
+
+#: .\wagtail_blocks\templates\wagtail_blocks\blocks\carousel.html:30
+#: .\wagtail_blocks\templates\wagtail_blocks\blocks\carousel.html:35
+msgid "Swipe left"
+msgstr "Sola kaydır"
+
+#: .\wagtail_blocks\templates\wagtail_blocks\blocks\carousel.html:47
+#: .\wagtail_blocks\templates\wagtail_blocks\blocks\carousel.html:52
+msgid "Swipe right"
+msgstr "Sağa kaydır"
+
+#: .\wagtail_blocks\templates\wagtail_blocks\blocks\code.html:23
+msgid "File name: "
+msgstr "Dosya adı: "
+
+#: .\wagtail_blocks\templates\wagtail_blocks\blocks\code.html:46
+#: .\wagtail_blocks\templates\wagtail_blocks\blocks\code.html:52
+msgid "Copy"
+msgstr "Kopyala"
+
+#: .\wagtail_blocks\templates\wagtail_blocks\blocks\list.html:16
+#: .\wagtail_blocks\templates\wagtail_blocks\blocks\list.html:20
+msgid "View"
+msgstr "Görüntüle"

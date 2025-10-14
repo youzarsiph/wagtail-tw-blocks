@@ -1,0 +1,393 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-10-10 10:51-0700\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Spanish <LL@li.org>\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\items\models.py:35 .\wagtail_blocks\blocks.py:119
+#: .\wagtail_blocks\blocks.py:388
+msgid "Item content"
+msgstr "Contenido del elemento"
+
+#: .\wagtail_blocks\__init__.py:7
+msgid "Plus"
+msgstr "Más"
+
+#: .\wagtail_blocks\__init__.py:8
+msgid "Arrow"
+msgstr "Flecha"
+
+#: .\wagtail_blocks\__init__.py:12
+msgid "Soft"
+msgstr "Suave"
+
+#: .\wagtail_blocks\__init__.py:13
+msgid "Outline"
+msgstr "Contorno"
+
+#: .\wagtail_blocks\__init__.py:14
+msgid "Dash"
+msgstr "Guion"
+
+#: .\wagtail_blocks\__init__.py:18 .\wagtail_blocks\__init__.py:29
+msgid "Info"
+msgstr "Información"
+
+#: .\wagtail_blocks\__init__.py:19 .\wagtail_blocks\__init__.py:28
+msgid "Success"
+msgstr "Éxito"
+
+#: .\wagtail_blocks\__init__.py:20 .\wagtail_blocks\__init__.py:30
+msgid "Warning"
+msgstr "Advertencia"
+
+#: .\wagtail_blocks\__init__.py:21 .\wagtail_blocks\__init__.py:31
+msgid "Error"
+msgstr "Error"
+
+#: .\wagtail_blocks\__init__.py:25
+msgid "Primary"
+msgstr "Primario"
+
+#: .\wagtail_blocks\__init__.py:26
+msgid "Secondary"
+msgstr "Secundario"
+
+#: .\wagtail_blocks\__init__.py:27
+msgid "Accent"
+msgstr "Acento"
+
+#: .\wagtail_blocks\__init__.py:35
+msgid "Border"
+msgstr "Borde"
+
+#: .\wagtail_blocks\__init__.py:36
+msgid "Box"
+msgstr "Caja"
+
+#: .\wagtail_blocks\__init__.py:37
+msgid "Lift"
+msgstr "Elevación"
+
+#: .\wagtail_blocks\__init__.py:42
+msgid "Auto"
+msgstr "Auto"
+
+#: .\wagtail_blocks\__init__.py:69
+msgid "Plain text"
+msgstr "Texto plano"
+
+#: .\wagtail_blocks\blocks.py:49 .\wagtail_blocks\blocks.py:208
+#: .\wagtail_blocks\blocks.py:342 .\wagtail_blocks\blocks.py:482
+msgid "Image"
+msgstr "Imagen"
+
+#: .\wagtail_blocks\blocks.py:54
+msgid "Image caption"
+msgstr "Leyenda de la imagen"
+
+#: .\wagtail_blocks\blocks.py:59
+msgid "Image attribution"
+msgstr "Crédito de la imagen"
+
+#: .\wagtail_blocks\blocks.py:76 .\wagtail_blocks\blocks.py:105
+#: .\wagtail_blocks\blocks.py:159 .\wagtail_blocks\blocks.py:383
+#: .\wagtail_blocks\blocks.py:435
+msgid "Icon name (lucide icons)"
+msgstr "Nombre del icono (iconos Lucide)"
+
+#: .\wagtail_blocks\blocks.py:81
+msgid "Action label"
+msgstr "Etiqueta de acción"
+
+#: .\wagtail_blocks\blocks.py:85
+msgid "Action internal link"
+msgstr "Enlace interno de la acción"
+
+#: .\wagtail_blocks\blocks.py:89
+msgid "Action external link"
+msgstr "Enlace externo de la acción"
+
+#: .\wagtail_blocks\blocks.py:94
+msgid "Action button color"
+msgstr "Color del botón de acción"
+
+#: .\wagtail_blocks\blocks.py:110
+msgid "Whether to show or hide item content"
+msgstr "Indica si mostrar u ocultar el contenido del elemento"
+
+#: .\wagtail_blocks\blocks.py:115 .\wagtail_blocks\blocks.py:471
+#: .\wagtail_blocks\blocks.py:549
+msgid "Item title"
+msgstr "Título del elemento"
+
+#: .\wagtail_blocks\blocks.py:132
+msgid "Accordion name"
+msgstr "Nombre del acordeón"
+
+#: .\wagtail_blocks\blocks.py:137
+msgid "Accordion style"
+msgstr "Estilo del acordeón"
+
+#: .\wagtail_blocks\blocks.py:142
+msgid "Accordion items"
+msgstr "Elementos del acordeón"
+
+#: .\wagtail_blocks\blocks.py:164
+msgid "Designates if alert is vertical or horizontal (default)"
+msgstr "Indica si la alerta es vertical u horizontal (predeterminado)"
+
+#: .\wagtail_blocks\blocks.py:169
+msgid "Alert style"
+msgstr "Estilo de alerta"
+
+#: .\wagtail_blocks\blocks.py:174
+msgid "Alert level"
+msgstr "Nivel de alerta"
+
+#: .\wagtail_blocks\blocks.py:178
+msgid "Alert message"
+msgstr "Mensaje de alerta"
+
+#: .\wagtail_blocks\blocks.py:193
+msgid "Alert actions"
+msgstr "Acciones de la alerta"
+
+#: .\wagtail_blocks\blocks.py:212 .\wagtail_blocks\blocks.py:483
+msgid "Video"
+msgstr "Vídeo"
+
+#: .\wagtail_blocks\blocks.py:217 .\wagtail_blocks\blocks.py:347
+msgid "Caption"
+msgstr "Leyenda"
+
+#: .\wagtail_blocks\blocks.py:227
+msgid "Designates if carousel is vertical or horizontal (default)"
+msgstr "Indica si el carrusel es vertical u horizontal (predeterminado)"
+
+#: .\wagtail_blocks\blocks.py:232
+msgid "Carousel items"
+msgstr "Elementos del carrusel"
+
+#: .\wagtail_blocks\blocks.py:248
+msgid "Whether to show or hide which programming language is used"
+msgstr "Indica si mostrar u ocultar el lenguaje de programación utilizado"
+
+#: .\wagtail_blocks\blocks.py:253
+msgid "Whether to show or hide copy buttons"
+msgstr "Indica si mostrar u ocultar los botones de copiar"
+
+#: .\wagtail_blocks\blocks.py:258
+msgid "Whether to show or hide window buttons"
+msgstr "Indica si mostrar u ocultar los botones de la ventana"
+
+#: .\wagtail_blocks\blocks.py:264
+#: .\wagtail_blocks\templates\wagtail_blocks\blocks\code.html:18
+msgid "File name"
+msgstr "Nombre de archivo"
+
+#: .\wagtail_blocks\blocks.py:270 .\wagtail_blocks\blocks.py:658
+#: .\wagtail_blocks\templates\wagtail_blocks\blocks\code.html:32
+#: .\wagtail_blocks\templates\wagtail_blocks\blocks\code.html:36
+#: .\wagtail_blocks\templates\wagtail_blocks\blocks\code_mockup.html:8
+#: .\wagtail_blocks\templates\wagtail_blocks\blocks\code_mockup.html:12
+msgid "Programming language"
+msgstr "Lenguaje de programación"
+
+#: .\wagtail_blocks\blocks.py:274 .\wagtail_blocks\blocks.py:662
+msgid "Code content"
+msgstr "Contenido del código"
+
+#: .\wagtail_blocks\blocks.py:289
+msgid "Diff Item 1"
+msgstr "Elemento de diferencia 1"
+
+#: .\wagtail_blocks\blocks.py:293
+msgid "Diff Item 2"
+msgstr "Elemento de diferencia 2"
+
+#: .\wagtail_blocks\blocks.py:314
+msgid "Designates if FAB is vertical or flower shaped (quarter circle)"
+msgstr "Indica si el FAB es vertical o con forma de flor (cuarto de círculo)"
+
+#: .\wagtail_blocks\blocks.py:318
+msgid "FAB toggle btn"
+msgstr "Botón de alternancia del FAB"
+
+#: .\wagtail_blocks\blocks.py:322
+msgid "FAB main action"
+msgstr "Acción principal del FAB"
+
+#: .\wagtail_blocks\blocks.py:327
+msgid "FAB items"
+msgstr "Elementos del FAB"
+
+#: .\wagtail_blocks\blocks.py:362
+msgid "Gallery items"
+msgstr "Elementos de la galería"
+
+#: .\wagtail_blocks\blocks.py:377
+msgid "Item date"
+msgstr "Fecha del elemento"
+
+#: .\wagtail_blocks\blocks.py:398
+msgid "Designates if timeline is compact"
+msgstr "Indica si la cronología es compacta"
+
+#: .\wagtail_blocks\blocks.py:403
+msgid "Designates if timeline is vertical or horizontal (default)"
+msgstr "Indica si la cronología es vertical u horizontal (predeterminado)"
+
+#: .\wagtail_blocks\blocks.py:408
+msgid "Designates if dates should snap to icons"
+msgstr "Indica si las fechas deben ajustarse a los iconos"
+
+#: .\wagtail_blocks\blocks.py:413
+msgid "Timeline items"
+msgstr "Elementos de la cronología"
+
+#: .\wagtail_blocks\blocks.py:429
+msgid "Item name"
+msgstr "Nombre del elemento"
+
+#: .\wagtail_blocks\blocks.py:440
+msgid "Item color"
+msgstr "Color del elemento"
+
+#: .\wagtail_blocks\blocks.py:450
+msgid "Designates if Steps is vertical or horizontal (default)"
+msgstr "Indica si los pasos son verticales u horizontales (predeterminado)"
+
+#: .\wagtail_blocks\blocks.py:455
+msgid "Steps items"
+msgstr "Elementos de pasos"
+
+#: .\wagtail_blocks\blocks.py:476
+msgid "Designates if tab is selected"
+msgstr "Indica si la pestaña está seleccionada"
+
+#: .\wagtail_blocks\blocks.py:480
+msgid "Alert"
+msgstr "Alerta"
+
+#: .\wagtail_blocks\blocks.py:481
+msgid "Code"
+msgstr "Código"
+
+#: .\wagtail_blocks\blocks.py:484
+msgid "Rich text"
+msgstr "Texto enriquecido"
+
+#: .\wagtail_blocks\blocks.py:487
+msgid "Tab Content"
+msgstr "Contenido de pestaña"
+
+#: .\wagtail_blocks\blocks.py:497
+msgid "Tab name"
+msgstr "Nombre de la pestaña"
+
+#: .\wagtail_blocks\blocks.py:502
+msgid "Designates if tab buttons position is reversed"
+msgstr "Indica si la posición de los botones de pestaña está invertida"
+
+#: .\wagtail_blocks\blocks.py:508
+msgid "Tab style"
+msgstr "Estilo de pestaña"
+
+#: .\wagtail_blocks\blocks.py:513
+msgid "Tab items"
+msgstr "Elementos de pestaña"
+
+#: .\wagtail_blocks\blocks.py:529
+msgid "Toast items"
+msgstr "Elementos de notificación emergente"
+
+#: .\wagtail_blocks\blocks.py:544
+msgid "Item image"
+msgstr "Imagen del elemento"
+
+#: .\wagtail_blocks\blocks.py:554
+msgid "Item description"
+msgstr "Descripción del elemento"
+
+#: .\wagtail_blocks\blocks.py:558
+msgid "Item internal link"
+msgstr "Enlace interno del elemento"
+
+#: .\wagtail_blocks\blocks.py:562
+msgid "Item external link"
+msgstr "Enlace externo del elemento"
+
+#: .\wagtail_blocks\blocks.py:567
+msgid "Actions"
+msgstr "Acciones"
+
+#: .\wagtail_blocks\blocks.py:577
+msgid "List title"
+msgstr "Título de la lista"
+
+#: .\wagtail_blocks\blocks.py:582
+msgid "List items"
+msgstr "Elementos de la lista"
+
+#: .\wagtail_blocks\blocks.py:598
+msgid "Whether to show or hide camera"
+msgstr "Indica si mostrar u ocultar la cámara"
+
+#: .\wagtail_blocks\blocks.py:602
+msgid "Phone wallpaper"
+msgstr "Fondo de pantalla del teléfono"
+
+#: .\wagtail_blocks\blocks.py:618
+msgid "Whether to show or hide toolbar"
+msgstr "Indica si mostrar u ocultar la barra de herramientas"
+
+#: .\wagtail_blocks\blocks.py:622
+msgid "Browser URL"
+msgstr "URL del navegador"
+
+#: .\wagtail_blocks\blocks.py:626
+msgid "Browser wallpaper"
+msgstr "Fondo de pantalla del navegador"
+
+#: .\wagtail_blocks\blocks.py:641
+msgid "Window wallpaper"
+msgstr "Fondo de pantalla de la ventana"
+
+#: .\wagtail_blocks\templates\wagtail_blocks\blocks\carousel.html:30
+#: .\wagtail_blocks\templates\wagtail_blocks\blocks\carousel.html:35
+msgid "Swipe left"
+msgstr "Desliza a la izquierda"
+
+#: .\wagtail_blocks\templates\wagtail_blocks\blocks\carousel.html:47
+#: .\wagtail_blocks\templates\wagtail_blocks\blocks\carousel.html:52
+msgid "Swipe right"
+msgstr "Desliza a la derecha"
+
+#: .\wagtail_blocks\templates\wagtail_blocks\blocks\code.html:23
+msgid "File name: "
+msgstr "Nombre de archivo: "
+
+#: .\wagtail_blocks\templates\wagtail_blocks\blocks\code.html:46
+#: .\wagtail_blocks\templates\wagtail_blocks\blocks\code.html:52
+msgid "Copy"
+msgstr "Copiar"
+
+#: .\wagtail_blocks\templates\wagtail_blocks\blocks\list.html:16
+#: .\wagtail_blocks\templates\wagtail_blocks\blocks\list.html:20
+msgid "View"
+msgstr "Ver"

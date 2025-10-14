@@ -107,7 +107,7 @@ class AccordionItem(blocks.StructBlock):
     is_expanded = blocks.BooleanBlock(
         default=False,
         required=False,
-        help_text=_("Wether to show or hide item content"),
+        help_text=_("Whether to show or hide item content"),
     )
     title = blocks.CharBlock(
         max_length=64,
@@ -245,17 +245,17 @@ class CodeBlock(blocks.StructBlock):
     show_language = blocks.BooleanBlock(
         default=SHOW_PROGRAMMING_LANGUAGE,
         required=False,
-        help_text=_("Wether to show or hide which programming language is used"),
+        help_text=_("Whether to show or hide which programming language is used"),
     )
     show_copy_btn = blocks.BooleanBlock(
         default=SHOW_COPY_BUTTON,
         required=False,
-        help_text=_("Wether to show or hide copy buttons"),
+        help_text=_("Whether to show or hide copy buttons"),
     )
     show_window_btns = blocks.BooleanBlock(
         default=SHOW_WINDOW_CONTROLS,
         required=False,
-        help_text=_("Wether to show or hide window buttons"),
+        help_text=_("Whether to show or hide window buttons"),
     )
     file_name = blocks.CharBlock(
         max_length=64,
@@ -595,7 +595,7 @@ class PhoneMockupBlock(blocks.StructBlock):
     show_camera = blocks.BooleanBlock(
         default=True,
         required=False,
-        help_text=_("Wether to show or hide camera"),
+        help_text=_("Whether to show or hide camera"),
     )
     wallpaper = WImageBlock(
         required=True,
@@ -615,7 +615,7 @@ class BrowserMockupBlock(blocks.StructBlock):
     show_url = blocks.BooleanBlock(
         default=True,
         required=False,
-        help_text=_("Wether to show or hide toolbar"),
+        help_text=_("Whether to show or hide toolbar"),
     )
     url = blocks.URLBlock(
         required=True,
