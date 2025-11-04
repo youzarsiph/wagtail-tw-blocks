@@ -15,6 +15,14 @@
 
 ---
 
+## Key features
+
+- **Modern design:** Tailwind CSS + daisyUI styling for clean, responsive layouts.
+- **Multiple themes:** All daisyUI themes included, with easy customization.
+- **CI/CD:** GitHub Actions pipelines for automated testing and deployment.
+
+---
+
 ## Demo
 
 [![Demo](https://img.youtube.com/vi/0b0dZByyPok/maxresdefault.jpg)](https://youtu.be/0b0dZByyPok)
@@ -71,7 +79,7 @@ You can customize the behavior of `wagtail-tw-blocks` by adding the following se
 # project/settings.py
 
 # Extend or override the default programming languages for the CodeBlock
-WAGTAIL_BLOCKS_PROGRAMMING_LANGUAGES = [
+WB_CODE_BLOCK_PROGRAMMING_LANGUAGES = [
     ('python', 'Python'),
     ('javascript', 'JavaScript'),
     ('html', 'HTML'),
@@ -85,14 +93,17 @@ WAGTAIL_BLOCKS_PROGRAMMING_LANGUAGES = [
     # ...
 ]
 
+# Show or hide the header the CodeBlock
+WB_CODE_BLOCK_SHOW_HEADER = True  # Default is True
+
 # Show or hide the programming language label in the CodeBlock
-WAGTAIL_BLOCKS_SHOW_PROGRAMMING_LANGUAGE = True  # Default is True
+WB_CODE_BLOCK_SHOW_PROGRAMMING_LANGUAGE = True  # Default is True
 
 # Show or hide the copy button in the CodeBlock
-WAGTAIL_BLOCKS_SHOW_COPY_BUTTON = True  # Default is True
+WB_CODE_BLOCK_SHOW_COPY_BUTTON = True  # Default is True
 
 # Show or hide window control buttons in the CodeBlock
-WAGTAIL_BLOCKS_SHOW_WINDOW_CONTROLS = True  # Default is True
+WB_CODE_BLOCK_SHOW_WINDOW_CONTROLS = True  # Default is True
 ```
 
 ---
@@ -130,47 +141,34 @@ class Article(Page):
 
 ```html
 <!-- blog/base.html -->
-
 <!doctype html>
-
-<html data-theme="luxury">
+<html>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Wagtail Blocks Usage Example</title>
 
-    <!--
-      Do not use in production.
-      See: 
-        - https://tailwindcss.com/docs/installation
-    -->
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-
     <!-- Code highlighting for CodeBlock -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github-dark.min.css"
     />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
     <script>hljs.highlightAll();</script>
-    
-    <!-- If you already using TailwindCSS and daisyUI you can include -->
+
+    <!-- Include stylesheet -->
     {% load static %}
     <link href="{% static 'wagtail_blocks/css/styles.css' %}" rel="stylesheet" type="text/css" />
   </head>
 
   <body>
-    <!-- 
-      Requires TailwindCSS Typography plugin.
-      "@tailwindcss/typography": https://github.com/tailwindlabs/tailwindcss-typography
-    -->
-    <main class="prose mx-auto prose-sm prose-video:rounded-box xl:prose-lg 2xl:prose-xl prose-headings:text-primary prose-img:rounded-box prose-img:w-full">
-      {{ article.content }}
+    <main>
+      <h1>{{ article.title }}</h1>
+      
+      <div>{{ article.content }}</div>
     </main>
 
-    <!-- Lucide icons -->
+    <!-- Lucide icons: https://lucide.dev/icons/ -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <script>lucide.createIcons();</script>
 
@@ -183,22 +181,9 @@ class Article(Page):
 
 ---
 
-## Key features
-
-- **Modern design:** Tailwind CSS + daisyUI styling for clean, responsive layouts.  
-- **Multiple themes:** All daisyUI themes included, with easy customization.  
-- **CI/CD:** GitHub Actions pipelines for automated testing and deployment.  
-- **Dependency management:** Poetry for reproducible, maintainable installs.  
-- **Code formatting:** Black for consistent, automatic formatting.  
-- **Linting:** Ruff for fast, comprehensive linting.  
-- **Testing:** Django test runner for unit and integration tests.  
-- **Starter configs:** `.gitignore`, `pyproject.toml`, and other essentials included.
-
----
-
 ## Extending
 
-You can easily extend or customize the provided blocks by subclassing them. For example, to create a custom alert block with additional styles:
+You can easily extend or customize the provided blocks by sub-classing them. For example, to create a custom alert block with additional styles:
 
 ```python
 from wagtail_blocks import blocks

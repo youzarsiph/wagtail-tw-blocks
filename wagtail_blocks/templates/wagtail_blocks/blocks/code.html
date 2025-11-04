@@ -4,6 +4,7 @@
   <div
     class="card card-sm lg:card-md 2xl:card-lg border border-base-300 bg-base-200"
   >
+    {% if self.show_header %}
     <div class="flex items-center justify-between gap-4 p-2">
       {% if self.show_window_btns %}
       <div class="flex items-center gap-2">
@@ -56,6 +57,7 @@
         {% endif %}
       </div>
     </div>
+    {% endif %}
 
     <pre
       class="overflow-x-auto max-w-full rounded-box overflow-clip"

@@ -18,25 +18,31 @@ from wagtail_blocks import (
 # Settings
 PROGRAMMING_LANGUAGES = getattr(
     settings,
-    "WAGTAIL_BLOCKS_PROGRAMMING_LANGUAGES",
+    "WB_CODE_BLOCK_PROGRAMMING_LANGUAGES",
     PROGRAMMING_LANGUAGES,
+)
+
+SHOW_HEADER = getattr(
+    settings,
+    "WB_CODE_BLOCK_SHOW_HEADER",
+    True,
 )
 
 SHOW_PROGRAMMING_LANGUAGE = getattr(
     settings,
-    "WAGTAIL_BLOCKS_SHOW_PROGRAMMING_LANGUAGE",
+    "WB_CODE_BLOCK_SHOW_PROGRAMMING_LANGUAGE",
     True,
 )
 
 SHOW_COPY_BUTTON = getattr(
     settings,
-    "WAGTAIL_BLOCKS_SHOW_COPY_BUTTON",
+    "WB_CODE_BLOCK_SHOW_COPY_BUTTON",
     True,
 )
 
 SHOW_WINDOW_CONTROLS = getattr(
     settings,
-    "WAGTAIL_BLOCKS_SHOW_WINDOW_CONTROLS",
+    "WB_CODE_BLOCK_SHOW_WINDOW_CONTROLS",
     True,
 )
 
@@ -135,6 +141,11 @@ class AccordionBlock(blocks.StructBlock):
         choices=ACCORDION_STYLES,
         required=False,
         help_text=_("Accordion style"),
+    )
+    is_joined = blocks.BooleanBlock(
+        default=False,
+        required=False,
+        help_text=_("Designates if accordion is joined"),
     )
     items = blocks.ListBlock(
         AccordionItem(),
@@ -242,6 +253,11 @@ class CarouselBlock(blocks.StructBlock):
 class CodeBlock(blocks.StructBlock):
     """Code block is used to show a block of code in a box that looks like a code editor."""
 
+    show_header = blocks.BooleanBlock(
+        default=SHOW_PROGRAMMING_LANGUAGE,
+        required=False,
+        help_text=_("Whether to show or hide the header"),
+    )
     show_language = blocks.BooleanBlock(
         default=SHOW_PROGRAMMING_LANGUAGE,
         required=False,
@@ -323,6 +339,8 @@ class FABBlock(blocks.StructBlock):
     )
     items = blocks.ListBlock(
         ButtonBlock(),
+        max_num=4,
+        min_num=1,
         required=True,
         help_text=_("FAB items"),
     )
@@ -352,12 +370,14 @@ class HoverGalleryBlock(blocks.StructBlock):
     """
     Hover Gallery is container of images.
     The first image is visible be default and when we hover it horizontally,
-    other images show up. Hover Gallery is useful for product cards in ecommerce sites,
-    portfoilios or in image galleries. Hover Gallery can include up to 10 images.
+    other images show up. Hover Gallery is useful for product cards in e-commerce sites,
+    portfolios or in image galleries. Hover Gallery can include up to 10 images.
     """
 
     items = blocks.ListBlock(
         HoverGalleryItem(),
+        max_num=10,
+        min_num=2,
         required=True,
         help_text=_("Gallery items"),
     )
