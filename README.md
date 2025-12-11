@@ -6,7 +6,6 @@
 [![Code Linting: Ruff](https://github.com/youzarsiph/wagtail-tw-blocks/actions/workflows/ruff.yml/badge.svg)](https://github.com/youzarsiph/wagtail-tw-blocks/actions/workflows/ruff.yml)
 [![PyPI - Version](https://img.shields.io/pypi/v/wagtail-tw-blocks?logo=pypi&logoColor=white)](https://pypi.org/project/wagtail-tw-blocks/)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/wagtail-tw-blocks?logo=python&logoColor=white)](https://pypi.org/project/wagtail-tw-blocks/)
-[![PyPI - Downloads](https://img.shields.io/pypi/dm/wagtail-tw-blocks?logo=pypi&logoColor=white)](https://pypi.org/project/wagtail-tw-blocks/)
 [![PyPI - License](https://img.shields.io/pypi/l/wagtail-tw-blocks?logo=pypi&logoColor=white)](https://pypi.org/project/wagtail-tw-blocks/)
 
 ## Overview
