@@ -1,0 +1,25 @@
+{% load i18n wagtailcore_tags %}
+
+<!---->
+{% if not page.is_root %}
+<!---->
+{% if page.get_prev_sibling %}
+<div
+  class="tooltip mr-auto rtl:mr-0 rtl:ml-auto"
+  data-tip="{% trans 'Previous' %}"
+>
+  <a
+    href="{% pageurl page.get_prev_sibling %}"
+    class="btn btn-sm btn-ghost lg:btn-md xl:btn-lg"
+  >
+    <i data-lucide="chevron-left" class="size-4 lg:size-6 rtl:rotate-180"></i>
+    {{ page.get_prev_sibling }}
+  </a>
+</div>
+{% else %}
+<!---->
+{% include 'wagtail/components/prev.html' with page=page.get_parent %}
+<!---->
+{% endif %}
+<!---->
+{% endif %}

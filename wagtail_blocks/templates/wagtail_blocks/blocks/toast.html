@@ -1,9 +1,0 @@
-{% load wagtailcore_tags %}
-
-<div class="not-prose my-4">
-  <ol class="toast toast-end">
-    {% for item in self.items %}
-    <li>{% include_block item %}</li>
-    {% endfor %}
-  </ol>
-</div>

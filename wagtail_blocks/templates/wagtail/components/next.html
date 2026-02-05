@@ -1,0 +1,22 @@
+{% load i18n wagtailcore_tags %}
+
+<!---->
+{% if not page.is_root %}
+<!---->
+{% if page.get_next_sibling %}
+<div class="tooltip ml-auto rtl:ml-0 rtl:mr-auto" data-tip="{% trans 'Next' %}">
+  <a
+    href="{% pageurl page.get_next_sibling %}"
+    class="btn btn-sm btn-ghost lg:btn-md xl:btn-lg"
+  >
+    {{ page.get_next_sibling }}
+    <i data-lucide="chevron-right" class="size-4 lg:size-6 rtl:rotate-180"></i>
+  </a>
+</div>
+{% else %}
+<!---->
+{% include 'wagtail/components/next.html' with page=page.get_parent %}
+<!---->
+{% endif %}
+<!---->
+{% endif %}

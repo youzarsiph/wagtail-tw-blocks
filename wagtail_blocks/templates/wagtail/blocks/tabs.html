@@ -1,0 +1,20 @@
+<div class="my-4 not-prose">
+  <div
+    class="tabs tabs-xs tabs-{{ self.style }} sm:tabs-sm lg:tabs-md xl:tabs-lg 2xl:tabs-xl"
+  >
+    {% for item in self.items %}
+    <input
+      class="tab"
+      type="radio"
+      name="{{ name }}"
+      aria-label="{{ item.title }}"
+      {% if forloop.first %}checked{% endif %}
+    />
+    <div
+      class="tab-content bg-base-100 border-base-300 p-4 {% if self.style != 'lift' %} rounded-field {% endif %}"
+    >
+      <div>{{ item.content }}</div>
+    </div>
+    {% endfor %}
+  </div>
+</div>

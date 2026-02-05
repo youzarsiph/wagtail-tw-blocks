@@ -1,0 +1,19 @@
+{% load i18n wagtailimages_tags %}
+
+<div class="my-4 not-prose">
+  <div class="carousel size-full rounded-box">
+    {% for item in self.items %}
+    <div class="carousel-item relative size-full">
+      <figure>{% image item fill-1920x1080 class="w-full" %}</figure>
+
+      <div class="absolute right-4 bottom-4 lg:right-8 lg:bottom-8">
+        <span
+          class="badge badge-sm badge-neutral font-bold shadow-sm lg:badge-md"
+        >
+          {{ forloop.counter }} / {{ item_count }}
+        </span>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>

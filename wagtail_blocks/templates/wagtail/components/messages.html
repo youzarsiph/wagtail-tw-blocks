@@ -1,0 +1,56 @@
+{% if messages %}
+<div class="toast toast-top toast-end top-24 z-50">
+  <ol class="grid gap-4 max-w-xl">
+    {% for message in messages %}
+    <!---->
+    {% if 'error' in message.tags %}
+    <li class="alert alert-soft alert-error">
+      <div class="tooltip tooltip-error" data-tip="{{ message.tags|title }}">
+        <i data-lucide="circle-x" class="size-4 lg:size-6"></i>
+        <span class="sr-only">{{ message.tags|title }}</span>
+      </div>
+
+      <p>{{ message }}</p>
+    </li>
+    {% elif 'warning' in message.tags %}
+    <li class="alert alert-soft alert-warning">
+      <div class="tooltip tooltip-warning" data-tip="{{ message.tags|title }}">
+        <i data-lucide="triangle-alert" class="size-4 lg:size-6"></i>
+        <span class="sr-only">{{ message.tags|title }}</span>
+      </div>
+
+      <p>{{ message }}</p>
+    </li>
+    {% elif 'success' in message.tags %}
+    <li class="alert alert-soft alert-success">
+      <div class="tooltip tooltip-success" data-tip="{{ message.tags|title }}">
+        <i data-lucide="circle-check" class="size-4 lg:size-6"></i>
+        <span class="sr-only">{{ message.tags|title }}</span>
+      </div>
+
+      <p>{{ message }}</p>
+    </li>
+    {% elif 'info' in message.tags %}
+    <li class="alert alert-soft alert-horizontal alert-info">
+      <div class="tooltip tooltip-info" data-tip="{{ message.tags|title }}">
+        <i data-lucide="info" class="size-4 lg:size-6"></i>
+        <span class="sr-only">{{ message.tags|title }}</span>
+      </div>
+
+      <p>{{ message }}</p>
+    </li>
+    {% else %}
+    <li class="alert alert-soft alert-horizontal">
+      <div class="tooltip tooltip-accent" data-tip="{{ message.tags|title }}">
+        <i data-lucide="bug" class="size-4 lg:size-6"></i>
+        <span class="sr-only">{{ message.tags|title }}</span>
+      </div>
+
+      <p>{{ message }}</p>
+    </li>
+    {% endif %}
+    <!---->
+    {% endfor %}
+  </ol>
+</div>
+{% endif %}

@@ -1,0 +1,21 @@
+{% load wagtailcore_tags %}
+
+<div class="my-4 not-prose">
+  <ol class="grid gap-4">
+    {% for item in self.items %}
+    <li
+      class="collapse {% if self.style %}collapse-{{ self.style }}{% endif %} bg-base-100 rounded-box border-base-300 border"
+    >
+      <input type="radio" name="{{ name }}" />
+
+      <div class="collapse-title font-bold">
+        <span class="flex items-center gap-2">{{ item.title }}</span>
+      </div>
+
+      <div class="collapse-content">
+        <div>{{ item.content|richtext }}</div>
+      </div>
+    </li>
+    {% endfor %}
+  </ol>
+</div>

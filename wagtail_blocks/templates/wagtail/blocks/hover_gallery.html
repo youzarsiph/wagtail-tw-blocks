@@ -1,0 +1,11 @@
+{% load wagtailimages_tags %}
+
+<div class="not-prose my-4">
+  <figure class="hover-gallery rounded-box overflow-clip">
+    {% for item in self.items %}
+    <!---->
+    {% image item fill-1920x1080 class="w-full" %}
+    <!---->
+    {% endfor %}
+  </figure>
+</div>

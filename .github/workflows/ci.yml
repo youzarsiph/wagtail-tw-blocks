@@ -7,15 +7,14 @@ on:
     branches: ["main"]
 
 jobs:
-
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
 
       - name: Install Dependencies
         run: |
@@ -24,34 +23,37 @@ jobs:
           pip install --upgrade pip
           pip install poetry
           poetry install
-          
+
+      - name: Lint & Format checks
+        run: |
+          source .venv/bin/activate
+          ruff check .
+          ruff format . --check
+
       - name: Start Django project
         run: |
           source .venv/bin/activate
-          poetry run django-admin startproject core
+          django-admin startproject core
           mv wagtail_blocks core
 
           # Configure settings
           echo "INSTALLED_APPS += [" >> core/settings.py
           echo "    'wagtail_blocks'," >> core/settings.py
           echo "    'wagtail.contrib.forms'," >> core/settings.py
-          echo "    'wagtail.contrib.redirects'," >> core/settings.py
           echo "    'wagtail.embeds'," >> core/settings.py
           echo "    'wagtail.sites'," >> core/settings.py
           echo "    'wagtail.users'," >> core/settings.py
-          echo "    'wagtail.snippets'," >> core/settings.py
           echo "    'wagtail.documents'," >> core/settings.py
           echo "    'wagtail.images'," >> core/settings.py
-          echo "    'wagtail.search'," >> core/settings.py
           echo "    'wagtail.admin'," >> core/settings.py
           echo "    'wagtail'," >> core/settings.py
           echo "    'modelcluster'," >> core/settings.py
           echo "    'taggit'," >> core/settings.py
           echo "]" >> core/settings.py
 
-      - name: Run the checks
+      - name: System checks
         run: |
           source .venv/bin/activate
-          poetry run python core/manage.py migrate
-          poetry run python core/manage.py check
-          poetry run python core/manage.py test
+          python core/manage.py migrate
+          python core/manage.py check
+          python core/manage.py test

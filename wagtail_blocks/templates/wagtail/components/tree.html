@@ -1,0 +1,28 @@
+{% load wagtailcore_tags %}
+
+<!---->
+{% for p in page.get_children %}
+<!---->
+{% if p.get_children_count > 0 %}
+<li>
+  <details>
+    <summary>
+      {% if p.specific.icon %}
+      <i data-lucide="{{ p.specific.icon }}" class="size-4 lg:size-5"></i>
+      {% endif %}{{ p.title }}
+    </summary>
+
+    <ul>
+      {% include 'wagtail/components/tree.html' with page=p %}
+    </ul>
+  </details>
+</li>
+{% else %}
+<li>
+  <a href="{% pageurl p %}">
+    {% if p.specific.icon %}
+    <i data-lucide="{{ p.specific.icon }}" class="size-4 lg:size-5"></i>
+    {% endif %}{{ p.title }}
+  </a>
+</li>
+{% endif %}{% endfor %}

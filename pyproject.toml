@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "wagtail-tw-blocks"
-version = "0.3.1"
-description = "A collection of reusable, production-ready content blocks for Wagtail CMS, styled with Tailwind CSS and daisyUI."
+version = "1.0.0"
+description = "a comprehensive library of production-ready `StreamField` components and UI elements designed for Wagtail CMS."
 authors = ["Yousef Abu Shanab <josephyousef249@gmail.com>"]
 license = "MIT"
 readme = "README.md"
@@ -16,7 +16,6 @@ django = ">=5.2.1"
 wagtail = ">=7.2"
 
 [tool.poetry.group.dev.dependencies]
-black = ">=25.1.0"
 ruff = ">=0.11.9"
 
 [build-system]

@@ -1,4 +1,20 @@
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
 
+@import "tailwindcss";
 @plugin "@tailwindcss/typography";
-@plugin "daisyui";
+
+@theme {
+  --font-mono:
+    "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+}
+
+@plugin "daisyui" {
+  themes: all;
+}
+
+@layer base {
+  .container-prose {
+    @apply container mx-auto px-4 prose-sm md:prose-base lg:prose-lg xl:prose-xl 2xl:prose-2xl prose-pre:m-0 prose-pre:p-0 prose-pre:font-mono;
+  }
+}

@@ -1,0 +1,65 @@
+{% load i18n %}
+
+<section
+  class="tooltip w-full not-prose my-4"
+  data-tip="{% trans 'Download' %}"
+>
+  <a
+    target="blank"
+    href="{{ self.document.url }}"
+    class="card card-sm card-border border-base-300 bg-base-100 hover:shadow-sm hover:shadow-base-300 lg:card-md xl:card-lg 2xl:card-xl"
+  >
+    <div class="relative card-body">
+      <div class="flex items-center justify-between gap-4">
+        <div class="flex items-center gap-4">
+          <div
+            class="tooltip tooltip-right rtl:tooltip-left"
+            data-tip="{{ self.document.file_extension|upper }}"
+          >
+            <i data-lucide="file" class="size-16 lg:size-32"></i>
+          </div>
+
+          <div class="grid gap-1">
+            <h1 class="card-title">{{ self.document.title }}</h1>
+            <small>{{ self.document.filename }}</small>
+          </div>
+        </div>
+
+        <span class="btn btn-sm btn-square btn-ghost lg:btn-md">
+          <i data-lucide="download" class="size-4 lg:size-6"></i>
+          <span class="sr-only">{% trans 'Download' %}</span>
+        </span>
+      </div>
+
+      <div class="card-actions">
+        <div class="tooltip" data-tip="{% trans 'User' %}">
+          <span class="btn w-full btn-xs btn-ghost lg:btn-sm">
+            <i data-lucide="user" class="size-4 lg:size-6"></i>
+            <span>{{ self.document.uploaded_by_user }}</span>
+          </span>
+        </div>
+
+        <div class="tooltip" data-tip="{% trans 'Type' %}">
+          <span class="btn w-full btn-xs btn-ghost lg:btn-sm">
+            <i data-lucide="file" class="size-4 lg:size-6"></i>
+            <span>{{ self.document.file_extension|upper }}</span>
+          </span>
+        </div>
+
+        <div class="tooltip" data-tip="{% trans 'File size' %}">
+          <span class="btn w-full btn-xs btn-ghost lg:btn-sm">
+            <i data-lucide="boxes" class="size-4 lg:size-6"></i>
+            <span>{{ size }}</span>
+          </span>
+        </div>
+
+        <div class="tooltip" data-tip="{% trans 'Uploaded at' %}">
+          <time class="btn w-full btn-xs btn-ghost lg:btn-sm">
+            <i data-lucide="calendar" class="size-4 lg:size-6"></i>
+            <span>{{ self.document.created_at }}</span>
+          </time>
+        </div>
+      </div>
+    </div>
+  </a>
+</section>

@@ -1,0 +1,77 @@
+{% load i18n wagtailcore_tags %}
+
+<!---->
+{% if LANGUAGES %}
+<li
+  class="tooltip tooltip-left rtl:tooltip-right"
+  data-tip="{% trans 'Language' %}"
+>
+  {% url 'set_language' as action %}
+  <form id="lang-form" method="post" class="hidden" action="{{ action }}">
+    {% csrf_token %}
+    <input name="next" type="hidden" value="{{ redirect_to }}" />
+  </form>
+  <button
+    popovertarget="language"
+    style="anchor-name: --language"
+    class="btn btn-sm btn-square btn-ghost lg:btn-md 2xl:btn-lg"
+  >
+    <i data-lucide="earth" class="size-4 lg:size-6"></i>
+    <span class="sr-only">{% trans 'Language' %}</span>
+  </button>
+
+  <ul
+    popover
+    id="language"
+    style="position-anchor: --language; max-height: 20rem"
+    class="menu menu-sm dropdown dropdown-left bg-base-100/50 rounded-box shadow-lg backdrop-blur-3xl rtl:dropdown-right lg:menu-md 2xl:menu-lg"
+  >
+    <li class="menu-title">{% trans 'Select a language' %}</li>
+    {% if page %}
+    <!---->
+    {% for translation in page.get_translations.live %}
+    <!---->
+    {% get_language_info for translation.locale.language_code as l %}
+    <li class="tooltip" data-tip="{{ l.name_translated }}">
+      <a
+        rel="alternate"
+        href="{% pageurl translation %}"
+        hreflang="{{ translation.locale.language_code }}"
+        class="{% if translation.locale.language_code == LANGUAGE_CODE %}menu-active{% endif %}"
+      >
+        {{ l.name_translated }} - ({{ l.name_local }})
+      </a>
+    </li>
+    {% empty %}
+    <li>
+      <a href="#" class="menu-active">{{ page.locale }}</a>
+    </li>
+    {% endfor %}
+    <!---->
+    {% else %}
+    <!---->
+    {% for language_code, language_name in LANGUAGES %}
+    <!---->
+    {% get_language_info for language_code as lang %}
+    <li class="tooltip" data-tip="{{ lang.name_translated }}">
+      <label
+        class="{% if language_code == LANGUAGE_CODE %}menu-active{% endif %}"
+      >
+        <input
+          type="submit"
+          class="hidden"
+          name="language"
+          form="lang-form"
+          value="{{ language_code }}"
+          aria-label="{{ lang.name_local }} ({{ lang.code }})"
+        />
+
+        {{ language_name }} - ({{ lang.name_local }})
+      </label>
+    </li>
+    {% endfor %}
+    <!---->
+    {% endif %}
+  </ul>
+</li>
+{% endif %}

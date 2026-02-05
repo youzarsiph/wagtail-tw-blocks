@@ -1,127 +1,26 @@
-"""Custom Wagtail CMS blocks"""
+"""Block definitions"""
 
-from django.conf import settings
+import math
+from typing import Any, Dict, Literal, Optional
+
+from django.utils.crypto import get_random_string
 from django.utils.translation import gettext_lazy as _
 from wagtail import blocks
+from wagtail.documents.blocks import DocumentChooserBlock
 from wagtail.embeds.blocks import EmbedBlock
-from wagtail.images.blocks import ImageBlock as WImageBlock
+from wagtail.images.blocks import ImageBlock
 
-from wagtail_blocks import (
-    ACCORDION_STYLES,
-    ALERT_LEVELS,
-    ALERT_STYLES,
-    COLOR_CHOICES,
-    PROGRAMMING_LANGUAGES,
-    TAB_STYLES,
-)
-
-# Settings
-PROGRAMMING_LANGUAGES = getattr(
-    settings,
-    "WB_CODE_BLOCK_PROGRAMMING_LANGUAGES",
-    PROGRAMMING_LANGUAGES,
-)
-
-SHOW_HEADER = getattr(
-    settings,
-    "WB_CODE_BLOCK_SHOW_HEADER",
-    True,
-)
-
-SHOW_PROGRAMMING_LANGUAGE = getattr(
-    settings,
-    "WB_CODE_BLOCK_SHOW_PROGRAMMING_LANGUAGE",
-    True,
-)
-
-SHOW_COPY_BUTTON = getattr(
-    settings,
-    "WB_CODE_BLOCK_SHOW_COPY_BUTTON",
-    True,
-)
-
-SHOW_WINDOW_CONTROLS = getattr(
-    settings,
-    "WB_CODE_BLOCK_SHOW_WINDOW_CONTROLS",
-    True,
-)
-
-
-class ImageBlock(blocks.StructBlock):
-    """Image block with caption"""
-
-    image = WImageBlock(
-        required=True,
-        help_text=_("Image"),
-    )
-    caption = blocks.CharBlock(
-        max_length=128,
-        required=False,
-        help_text=_("Image caption"),
-    )
-    attribution = blocks.CharBlock(
-        max_length=128,
-        required=False,
-        help_text=_("Image attribution"),
-    )
-
-    class Meta:
-        """Meta data"""
-
-        icon = "image"
-        template = "wagtail_blocks/blocks/image.html"
-
-
-class ButtonBlock(blocks.StructBlock):
-    """Action block (link)"""
-
-    icon = blocks.CharBlock(
-        max_length=32,
-        required=False,
-        default="check-circle2",
-        help_text=_("Icon name (lucide icons)"),
-    )
-    label = blocks.CharBlock(
-        max_length=32,
-        required=False,
-        help_text=_("Action label"),
-    )
-    page = blocks.PageChooserBlock(
-        required=False,
-        help_text=_("Action internal link"),
-    )
-    url = blocks.URLBlock(
-        required=False,
-        help_text=_("Action external link"),
-    )
-    color = blocks.ChoiceBlock(
-        choices=COLOR_CHOICES,
-        required=False,
-        help_text=_("Action button color"),
-    )
+from wagtail_blocks import constants
 
 
 class AccordionItem(blocks.StructBlock):
     """Accordion Item"""
 
-    icon = blocks.CharBlock(
-        max_length=32,
-        required=False,
-        default="check-circle2",
-        help_text=_("Icon name (lucide icons)"),
-    )
-    is_expanded = blocks.BooleanBlock(
-        default=False,
-        required=False,
-        help_text=_("Whether to show or hide item content"),
-    )
     title = blocks.CharBlock(
         max_length=64,
-        required=True,
         help_text=_("Item title"),
     )
     content = blocks.RichTextBlock(
-        required=True,
         help_text=_("Item content"),
     )
 
@@ -132,24 +31,12 @@ class AccordionBlock(blocks.StructBlock):
     but only one item can stay open at a time.
     """
 
-    name = blocks.CharBlock(
-        max_length=64,
-        required=True,
-        help_text=_("Accordion name"),
-    )
     style = blocks.ChoiceBlock(
-        choices=ACCORDION_STYLES,
-        required=False,
+        choices=constants.ACCORDION_STYLES,
         help_text=_("Accordion style"),
-    )
-    is_joined = blocks.BooleanBlock(
-        default=False,
-        required=False,
-        help_text=_("Designates if accordion is joined"),
     )
     items = blocks.ListBlock(
         AccordionItem(),
-        required=True,
         help_text=_("Accordion items"),
     )
 
@@ -157,89 +44,93 @@ class AccordionBlock(blocks.StructBlock):
         """Meta data"""
 
         icon = "collapse-down"
-        template = "wagtail_blocks/blocks/accordion.html"
+        template = "wagtail/blocks/accordion.html"
+
+    def get_context(
+        self,
+        value: Dict[str, Any],
+        parent_context: Optional[Dict[str, Any]] = None,
+    ) -> Dict[str, Any]:
+        return {
+            **super().get_context(value, parent_context),
+            "name": get_random_string(5),
+        }
 
 
 class AlertBlock(blocks.StructBlock):
     """Alert informs users about important events."""
 
-    icon = blocks.CharBlock(
-        max_length=32,
-        required=False,
-        default="alert-triangle",
-        help_text=_("Icon name (lucide icons)"),
-    )
-    is_vertical = blocks.BooleanBlock(
-        default=False,
-        required=False,
-        help_text=_("Designates if alert is vertical or horizontal (default)"),
+    level = blocks.ChoiceBlock(
+        choices=constants.ALERT_LEVELS,
+        help_text=_("Alert level"),
     )
     style = blocks.ChoiceBlock(
-        choices=ALERT_STYLES,
+        choices=constants.ALERT_STYLES,
         required=False,
         help_text=_("Alert style"),
     )
-    level = blocks.ChoiceBlock(
-        choices=ALERT_LEVELS,
-        required=True,
-        help_text=_("Alert level"),
-    )
     message = blocks.RichTextBlock(
-        required=True,
         help_text=_("Alert message"),
-        features=[
-            "bold",
-            "italic",
-            "link",
-            "document-link",
-            "code",
-            "superscript",
-            "subscript",
-            "strikethrough",
-        ],
-    )
-    actions = blocks.ListBlock(
-        ButtonBlock(),
-        required=False,
-        help_text=_("Alert actions"),
     )
 
     class Meta:
         """Meta data"""
 
         icon = "warning"
-        template = "wagtail_blocks/blocks/alert.html"
+        template = "wagtail/blocks/alert.html"
 
+    def get_icon(
+        self,
+        level: Optional[Literal["info", "success", "warning", "error"]],
+    ) -> Literal[
+        "info",
+        "circle-check",
+        "alert-triangle",
+        "x-circle",
+        "question-mark-circle",
+    ]:
+        """
+        Get alert icon based on alert level.
 
-class CarouselItem(blocks.StructBlock):
-    """Carousel Items"""
+        Args:
+            level (str): Alert level
 
-    image = WImageBlock(
-        required=False,
-        help_text=_("Image"),
-    )
-    video = EmbedBlock(
-        required=False,
-        help_text=_("Video"),
-    )
-    caption = blocks.CharBlock(
-        max_length=128,
-        required=False,
-        help_text=_("Caption"),
-    )
+        Returns:
+            str: Alert icon
+        """
+
+        match level:
+            case "info":
+                return level
+
+            case "success":
+                return "circle-check"
+
+            case "warning":
+                return "alert-triangle"
+
+            case "error":
+                return "x-circle"
+
+            case None:
+                return "question-mark-circle"
+
+    def get_context(
+        self,
+        value: Dict[str, Any],
+        parent_context: Optional[Dict[str, Any]] = None,
+    ) -> Dict[str, Any]:
+        return {
+            **super().get_context(value, parent_context),
+            "icon": self.get_icon(value.get("level")),
+        }
 
 
 class CarouselBlock(blocks.StructBlock):
     """Carousel show images or content in a scrollable area."""
 
-    is_vertical = blocks.BooleanBlock(
-        default=False,
-        required=False,
-        help_text=_("Designates if carousel is vertical or horizontal (default)"),
-    )
     items = blocks.ListBlock(
-        CarouselItem(),
-        required=True,
+        ImageBlock(),
         help_text=_("Carousel items"),
     )
 
@@ -247,46 +138,27 @@ class CarouselBlock(blocks.StructBlock):
         """Meta data"""
 
         icon = "media"
-        template = "wagtail_blocks/blocks/carousel.html"
+        template = "wagtail/blocks/carousel.html"
+
+    def get_context(
+        self,
+        value: Dict[str, Any],
+        parent_context: Optional[Dict[str, Any]] = None,
+    ) -> Dict[str, Any]:
+        return {
+            **super().get_context(value, parent_context),
+            "item_count": len(value.get("items", 0)),
+        }
 
 
 class CodeBlock(blocks.StructBlock):
     """Code block is used to show a block of code in a box that looks like a code editor."""
 
-    show_header = blocks.BooleanBlock(
-        default=SHOW_PROGRAMMING_LANGUAGE,
-        required=False,
-        help_text=_("Whether to show or hide the header"),
-    )
-    show_language = blocks.BooleanBlock(
-        default=SHOW_PROGRAMMING_LANGUAGE,
-        required=False,
-        help_text=_("Whether to show or hide which programming language is used"),
-    )
-    show_copy_btn = blocks.BooleanBlock(
-        default=SHOW_COPY_BUTTON,
-        required=False,
-        help_text=_("Whether to show or hide copy buttons"),
-    )
-    show_window_btns = blocks.BooleanBlock(
-        default=SHOW_WINDOW_CONTROLS,
-        required=False,
-        help_text=_("Whether to show or hide window buttons"),
-    )
-    file_name = blocks.CharBlock(
-        max_length=64,
-        default="Untitled",
-        required=True,
-        help_text=_("File name"),
-    )
     language = blocks.ChoiceBlock(
-        choices=PROGRAMMING_LANGUAGES,
-        default="auto",
-        required=True,
+        choices=constants.PROGRAMMING_LANGUAGES,
         help_text=_("Programming language"),
     )
     code = blocks.TextBlock(
-        required=True,
         help_text=_("Code content"),
     )
 
@@ -294,76 +166,78 @@ class CodeBlock(blocks.StructBlock):
         """Meta data"""
 
         icon = "code"
-        template = "wagtail_blocks/blocks/code.html"
+        template = "wagtail/blocks/code.html"
 
 
 class DiffBlock(blocks.StructBlock):
-    """Diff component shows a side-by-side comparison of two items."""
+    """Diff block shows a side-by-side comparison of two items."""
 
-    item_1 = WImageBlock(
-        required=True,
-        help_text=_("Diff Item 1"),
-    )
-    item_2 = WImageBlock(
-        required=True,
-        help_text=_("Diff Item 2"),
-    )
+    item_1 = ImageBlock(help_text=_("Diff Item 1"))
+    item_2 = ImageBlock(help_text=_("Diff Item 2"))
 
     class Meta:
         """Meta data"""
 
         icon = "image"
-        template = "wagtail_blocks/blocks/diff.html"
+        template = "wagtail/blocks/diff.html"
 
 
-class FABBlock(blocks.StructBlock):
-    """
-    FAB (Floating Action Button) stays in the bottom corner of screen. It includes a
-    focusable and accessible element with button role. Clicking or focusing it shows
-    additional buttons (known as Speed Dial buttons) in a vertical arrangement or a
-    flower shape (quarter circle).
-    """
+class DocumentBlock(blocks.StructBlock):
+    """Document block shows a document card with a download button"""
 
-    is_flower = blocks.BooleanBlock(
-        default=False,
-        required=False,
-        help_text=_("Designates if FAB is vertical or flower shaped (quarter circle)"),
-    )
-    toggle = ButtonBlock(
-        required=True,
-        help_text=_("FAB toggle btn"),
-    )
-    main = ButtonBlock(
-        required=False,
-        help_text=_("FAB main action"),
-    )
-    items = blocks.ListBlock(
-        ButtonBlock(),
-        max_num=4,
-        min_num=1,
-        required=True,
-        help_text=_("FAB items"),
-    )
+    document = DocumentChooserBlock()
 
     class Meta:
         """Meta data"""
 
-        icon = "grip"
-        template = "wagtail_blocks/blocks/fab.html"
+        icon = "doc-full"
+        template = "wagtail/blocks/document.html"
 
+    def get_doc_size(self, size_bytes: int) -> str:
+        """
+        Converts a file size in bytes into a human-readable string (e.g., "1.43 MB").
 
-class HoverGalleryItem(blocks.StructBlock):
-    """Hover gallery items"""
+        This method uses the binary prefix system (base 1024) and scales the
+        unit dynamically based on the magnitude of the file size.
 
-    image = WImageBlock(
-        required=True,
-        help_text=_("Image"),
-    )
-    caption = blocks.CharBlock(
-        max_length=128,
-        required=False,
-        help_text=_("Caption"),
-    )
+        Args:
+            size_bytes (int): The total size of the document in bytes.
+
+        Returns:
+            str: A formatted string containing the scaled size and its unit.
+        """
+
+        if size_bytes <= 0:
+            return "0 B"
+
+        # Define the sequence of data units supported
+        DATA_UNITS = ("B", "KB", "MB", "GB", "TB", "PB", "EB")
+
+        # Determine the power of 1024 to which the size corresponds
+        # log(size, 1024) returns the index of the unit in our DATA_UNITS tuple
+        unit_index = int(math.floor(math.log(size_bytes, 1024)))
+
+        # Safety check: ensure the index does not exceed our defined units
+        unit_index = min(unit_index, len(DATA_UNITS) - 1)
+
+        # Calculate the divisor: 1024 raised to the power of the unit index
+        divisor = math.pow(1024, unit_index)
+
+        # Scale the size and round to two decimal places for UI clarity
+        scaled_size = round(size_bytes / divisor, 2)
+        unit_label = DATA_UNITS[unit_index]
+
+        return f"{scaled_size} {unit_label}"
+
+    def get_context(
+        self,
+        value: Dict[str, Any],
+        parent_context: Optional[Dict[str, Any]] = None,
+    ) -> Dict[str, Any]:
+        return {
+            **super().get_context(value, parent_context),
+            "size": self.get_doc_size(value.get("document").file_size),
+        }
 
 
 class HoverGalleryBlock(blocks.StructBlock):
@@ -375,10 +249,9 @@ class HoverGalleryBlock(blocks.StructBlock):
     """
 
     items = blocks.ListBlock(
-        HoverGalleryItem(),
+        ImageBlock(),
         max_num=10,
         min_num=2,
-        required=True,
         help_text=_("Gallery items"),
     )
 
@@ -386,100 +259,7 @@ class HoverGalleryBlock(blocks.StructBlock):
         """Meta data"""
 
         icon = "image"
-        template = "wagtail_blocks/blocks/hover_gallery.html"
-
-
-class TimelineItem(blocks.StructBlock):
-    """Timeline item"""
-
-    date = blocks.DateBlock(
-        required=True,
-        help_text=_("Item date"),
-    )
-    icon = blocks.CharBlock(
-        max_length=32,
-        required=False,
-        default="check-circle2",
-        help_text=_("Icon name (lucide icons)"),
-    )
-    content = blocks.CharBlock(
-        max_length=128,
-        required=True,
-        help_text=_("Item content"),
-    )
-
-
-class TimelineBlock(blocks.StructBlock):
-    """Timeline component shows a list of events in chronological order."""
-
-    is_compact = blocks.BooleanBlock(
-        default=False,
-        required=False,
-        help_text=_("Designates if timeline is compact"),
-    )
-    is_vertical = blocks.BooleanBlock(
-        default=False,
-        required=False,
-        help_text=_("Designates if timeline is vertical or horizontal (default)"),
-    )
-    snap_to_icon = blocks.BooleanBlock(
-        default=False,
-        required=False,
-        help_text=_("Designates if dates should snap to icons"),
-    )
-    items = blocks.ListBlock(
-        TimelineItem(),
-        required=True,
-        help_text=_("Timeline items"),
-    )
-
-    class Meta:
-        """Meta data"""
-
-        icon = "calendar-alt"
-        template = "wagtail_blocks/blocks/timeline.html"
-
-
-class StepItem(blocks.StructBlock):
-    """Step item"""
-
-    name = blocks.CharBlock(
-        max_length=64,
-        required=True,
-        help_text=_("Item name"),
-    )
-    icon = blocks.CharBlock(
-        max_length=32,
-        required=False,
-        default="check-circle2",
-        help_text=_("Icon name (lucide icons)"),
-    )
-    color = blocks.ChoiceBlock(
-        choices=COLOR_CHOICES,
-        required=False,
-        help_text=_("Item color"),
-    )
-
-
-class StepsBlock(blocks.StructBlock):
-    """Steps can be used to show a list of steps in a process."""
-
-    is_vertical = blocks.BooleanBlock(
-        default=False,
-        required=False,
-        help_text=_("Designates if Steps is vertical or horizontal (default)"),
-    )
-    items = blocks.ListBlock(
-        StepItem(),
-        required=True,
-        help_text=_("Steps items"),
-    )
-
-    class Meta:
-        """Meta data"""
-
-        icon = "breadcrumb-expand"
-        template = "wagtail_blocks/blocks/steps.html"
+        template = "wagtail/blocks/hover_gallery.html"
 
 
 class TabItem(blocks.StructBlock):
@@ -487,23 +267,16 @@ class TabItem(blocks.StructBlock):
 
     title = blocks.CharBlock(
         max_length=64,
-        required=True,
-        help_text=_("Item title"),
-    )
-    is_selected = blocks.BooleanBlock(
-        default=False,
-        required=False,
-        help_text=_("Designates if tab is selected"),
+        help_text=_("Tab title"),
     )
     content = blocks.StreamBlock(
         [
-            ("alert", AlertBlock(required=True, help_text=_("Alert"))),
-            ("code", CodeBlock(required=True, help_text=_("Code"))),
-            ("image", ImageBlock(required=True, help_text=_("Image"))),
-            ("video", EmbedBlock(required=True, help_text=_("Video"))),
-            ("text", blocks.RichTextBlock(required=True, help_text=_("Rich text"))),
+            ("alert", AlertBlock(help_text=_("Alert"))),
+            ("code", CodeBlock(help_text=_("Code"))),
+            ("image", ImageBlock(help_text=_("Image"))),
+            ("video", EmbedBlock(help_text=_("Video"))),
+            ("text", blocks.RichTextBlock(help_text=_("Text"))),
         ],
-        required=True,
         help_text=_("Tab Content"),
     )
 
@@ -511,25 +284,12 @@ class TabItem(blocks.StructBlock):
 class TabsBlock(blocks.StructBlock):
     """Tabs can be used to show a list of links in a tabbed format."""
 
-    name = blocks.CharBlock(
-        max_length=64,
-        required=True,
-        help_text=_("Tab name"),
-    )
-    is_reversed = blocks.BooleanBlock(
-        default=False,
-        required=False,
-        help_text=_("Designates if tab buttons position is reversed"),
-    )
     style = blocks.ChoiceBlock(
-        choices=TAB_STYLES,
-        default="border",
-        required=True,
+        choices=constants.TAB_STYLES,
         help_text=_("Tab style"),
     )
     items = blocks.ListBlock(
         TabItem(),
-        required=True,
         help_text=_("Tab items"),
     )
 
@@ -537,153 +297,14 @@ class TabsBlock(blocks.StructBlock):
         """Meta data"""
 
         icon = "dots-horizontal"
-        template = "wagtail_blocks/blocks/tabs.html"
+        template = "wagtail/blocks/tabs.html"
 
-
-class ToastBlock(blocks.StructBlock):
-    """Toast is a wrapper to stack elements, positioned on the corner of page."""
-
-    items = blocks.ListBlock(
-        AlertBlock(),
-        required=True,
-        help_text=_("Toast items"),
-    )
-
-    class Meta:
-        """Meta data"""
-
-        icon = "mail"
-        template = "wagtail_blocks/blocks/toast.html"
-
-
-class ListItem(blocks.StructBlock):
-    """List item"""
-
-    image = WImageBlock(
-        required=False,
-        help_text=_("Item image"),
-    )
-    title = blocks.CharBlock(
-        max_length=64,
-        required=True,
-        help_text=_("Item title"),
-    )
-    description = blocks.CharBlock(
-        max_length=128,
-        required=False,
-        help_text=_("Item description"),
-    )
-    page = blocks.PageChooserBlock(
-        required=False,
-        help_text=_("Item internal link"),
-    )
-    url = blocks.URLBlock(
-        required=False,
-        help_text=_("Item external link"),
-    )
-    actions = blocks.ListBlock(
-        ButtonBlock(),
-        required=False,
-        help_text=_("Actions"),
-    )
-
-
-class ListBlock(blocks.StructBlock):
-    """List is a vertical layout to display information in rows."""
-
-    title = blocks.CharBlock(
-        max_length=64,
-        required=True,
-        help_text=_("List title"),
-    )
-    items = blocks.ListBlock(
-        ListItem(),
-        required=True,
-        help_text=_("List items"),
-    )
-
-    class Meta:
-        """Meta data"""
-
-        icon = "list-ol"
-        template = "wagtail_blocks/blocks/list.html"
-
-
-class PhoneMockupBlock(blocks.StructBlock):
-    """Phone mockup shows a mockup of an iPhone."""
-
-    show_camera = blocks.BooleanBlock(
-        default=True,
-        required=False,
-        help_text=_("Whether to show or hide camera"),
-    )
-    wallpaper = WImageBlock(
-        required=True,
-        help_text=_("Phone wallpaper"),
-    )
-
-    class Meta:
-        """Meta data"""
-
-        icon = "mobile-alt"
-        template = "wagtail_blocks/blocks/phone.html"
-
-
-class BrowserMockupBlock(blocks.StructBlock):
-    """Browser mockup shows a box that looks like a browser window."""
-
-    show_url = blocks.BooleanBlock(
-        default=True,
-        required=False,
-        help_text=_("Whether to show or hide toolbar"),
-    )
-    url = blocks.URLBlock(
-        required=True,
-        help_text=_("Browser URL"),
-    )
-    wallpaper = WImageBlock(
-        required=True,
-        help_text=_("Browser wallpaper"),
-    )
-
-    class Meta:
-        """Meta data"""
-
-        icon = "desktop"
-        template = "wagtail_blocks/blocks/browser.html"
-
-
-class WindowMockupBlock(blocks.StructBlock):
-    """Window mockup shows a box that looks like an operating system window."""
-
-    wallpaper = WImageBlock(
-        required=True,
-        help_text=_("Window wallpaper"),
-    )
-
-    class Meta:
-        """Meta data"""
-
-        icon = "desktop"
-        template = "wagtail_blocks/blocks/window.html"
-
-
-class CodeMockupBlock(blocks.StructBlock):
-    """Code mockup is used to show a block of code in a box that looks like a code editor."""
-
-    language = blocks.ChoiceBlock(
-        choices=PROGRAMMING_LANGUAGES,
-        default="auto",
-        required=True,
-        help_text=_("Programming language"),
-    )
-    code = blocks.TextBlock(
-        required=True,
-        help_text=_("Code content"),
-    )
-
-    class Meta:
-        """Meta data"""
-
-        icon = "code"
-        template = "wagtail_blocks/blocks/code_mockup.html"
+    def get_context(
+        self,
+        value: Dict[str, Any],
+        parent_context: Optional[Dict[str, Any]] = None,
+    ) -> Dict[str, Any]:
+        return {
+            **super().get_context(value, parent_context),
+            "name": get_random_string(5),
+        }
