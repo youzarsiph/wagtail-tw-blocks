@@ -1,11 +1,11 @@
 {% load i18n %}
 
-<div class="relative my-4">
+<div class="group relative my-4">
   <div
     class="card card-sm card-border border-base-300 md:card-md lg:card-lg xl:card-xl"
   >
-    <div class="absolute inset-x-0 top-0">
-      <div class="flex items-center justify-end gap-4 p-1">
+    <div class="absolute inset-x-0 top-0 hidden group-hover:block">
+      <div class="flex items-center justify-end gap-2 p-1 lg:gap-4">
         <div class="tooltip" data-tip="{% trans 'Language' %}">
           <span class="btn btn-sm btn-ghost lg:btn-md">
             <span class="sr-only">{% trans 'Programming language' %}:</span>
@@ -15,6 +15,7 @@
 
         <div class="tooltip" data-tip="{% trans 'Copy' %}">
           <button
+            type="button"
             class="btn btn-sm btn-copy btn-ghost btn-square lg:btn-md"
             data-clipboard-text="{{ self.code }}"
           >
@@ -27,6 +28,6 @@
 
     <pre
       class="overflow-hidden rounded-box"
-    ><code class="language-{{ self.language }}">{{ self.code }}</code></pre>
+    ><code class="{% if self.language != 'auto' %}language-{{ self.language }}{% endif %}">{{ self.code }}</code></pre>
   </div>
 </div>

@@ -16,7 +16,6 @@
 
 - **Design-First Architecture:** Leverages Tailwind CSS and daisyUI for clean, responsive, and professional aesthetics.
 - **Thematic Flexibility:** Full support for all daisyUI themes, allowing for effortless brand alignment.
-- **Enterprise Ready:** Includes automated testing and deployment pipelines via GitHub Actions (CI/CD).
 - **Extensibility:** Architected for easy subclassing and template overriding to meet specific project requirements.
 
 ---
@@ -245,6 +244,48 @@ Seamless integration with Django/Wagtail `i18n` for multi-lingual sites.
 - **Demo:**
 
   ![Languages demo](https://github.com/user-attachments/assets/03774cb3-2518-4cc8-a162-98ced48eb833)
+
+#### Theme switch
+
+Switch between daisyUI themes with a single click.
+
+- **Usage:**
+
+  ```html
+  {% extends 'app/base.html' %}{% load static %}
+
+  <!---->
+  {% block content %}
+  <header class="absolute inset-x-0 top-0 z-10 backdrop-blur-3xl">
+    <nav class="navbar p-4">
+      <ul class="navbar-start gap-4">
+        <li
+          class="tooltip tooltip-bottom tooltip-primary"
+          data-tip="Your Brand"
+        >
+          <h1>
+            <a href="https://your.domain.com">
+              <img
+                alt="Your Brand"
+                class="lg:size-8 2xl:size-10"
+                src="{% static 'path/to/logo.png' %}"
+              />
+            </a>
+          </h1>
+        </li>
+      </ul>
+
+      <ul class="navbar-end gap-4">
+        {% include 'wagtail/components/themes.html' %}
+      </ul>
+    </nav>
+  </header>
+  {% endblock %}
+  ```
+
+- **Demo:**
+
+  ![Themes demo](https://github.com/user-attachments/assets/ef13b4fb-655f-476e-a532-df92a3bdda92)
 
 #### Messages
 

@@ -16,13 +16,8 @@ from wagtail_blocks import constants
 class AccordionItem(blocks.StructBlock):
     """Accordion Item"""
 
-    title = blocks.CharBlock(
-        max_length=64,
-        help_text=_("Item title"),
-    )
-    content = blocks.RichTextBlock(
-        help_text=_("Item content"),
-    )
+    title = blocks.CharBlock(max_length=64, help_text=_("Item title"))
+    content = blocks.RichTextBlock(help_text=_("Item content"))
 
 
 class AccordionBlock(blocks.StructBlock):
@@ -33,16 +28,15 @@ class AccordionBlock(blocks.StructBlock):
 
     style = blocks.ChoiceBlock(
         choices=constants.ACCORDION_STYLES,
+        required=False,
         help_text=_("Accordion style"),
     )
-    items = blocks.ListBlock(
-        AccordionItem(),
-        help_text=_("Accordion items"),
-    )
+    items = blocks.ListBlock(AccordionItem(), help_text=_("Accordion items"))
 
     class Meta:
         """Meta data"""
 
+        label = _("Accordion")
         icon = "collapse-down"
         template = "wagtail/blocks/accordion.html"
 
@@ -61,21 +55,17 @@ class AlertBlock(blocks.StructBlock):
     """Alert informs users about important events."""
 
     level = blocks.ChoiceBlock(
-        choices=constants.ALERT_LEVELS,
-        help_text=_("Alert level"),
+        choices=constants.ALERT_LEVELS, help_text=_("Alert level")
     )
     style = blocks.ChoiceBlock(
-        choices=constants.ALERT_STYLES,
-        required=False,
-        help_text=_("Alert style"),
+        choices=constants.ALERT_STYLES, required=False, help_text=_("Alert style")
     )
-    message = blocks.RichTextBlock(
-        help_text=_("Alert message"),
-    )
+    message = blocks.RichTextBlock(help_text=_("Alert message"))
 
     class Meta:
         """Meta data"""
 
+        label = _("Alert")
         icon = "warning"
         template = "wagtail/blocks/alert.html"
 
@@ -129,14 +119,12 @@ class AlertBlock(blocks.StructBlock):
 class CarouselBlock(blocks.StructBlock):
     """Carousel show images or content in a scrollable area."""
 
-    items = blocks.ListBlock(
-        ImageBlock(),
-        help_text=_("Carousel items"),
-    )
+    items = blocks.ListBlock(ImageBlock(), help_text=_("Carousel items"))
 
     class Meta:
         """Meta data"""
 
+        label = _("Carousel")
         icon = "media"
         template = "wagtail/blocks/carousel.html"
 
@@ -155,16 +143,14 @@ class CodeBlock(blocks.StructBlock):
     """Code block is used to show a block of code in a box that looks like a code editor."""
 
     language = blocks.ChoiceBlock(
-        choices=constants.PROGRAMMING_LANGUAGES,
-        help_text=_("Programming language"),
+        choices=constants.PROGRAMMING_LANGUAGES, help_text=_("Programming language")
     )
-    code = blocks.TextBlock(
-        help_text=_("Code content"),
-    )
+    code = blocks.TextBlock(help_text=_("Code content"))
 
     class Meta:
         """Meta data"""
 
+        label = _("Code")
         icon = "code"
         template = "wagtail/blocks/code.html"
 
@@ -178,6 +164,7 @@ class DiffBlock(blocks.StructBlock):
     class Meta:
         """Meta data"""
 
+        label = _("Diff")
         icon = "image"
         template = "wagtail/blocks/diff.html"
 
@@ -190,6 +177,7 @@ class DocumentBlock(blocks.StructBlock):
     class Meta:
         """Meta data"""
 
+        label = _("Document")
         icon = "doc-full"
         template = "wagtail/blocks/document.html"
 
@@ -258,6 +246,7 @@ class HoverGalleryBlock(blocks.StructBlock):
     class Meta:
         """Meta data"""
 
+        label = _("Gallery")
         icon = "image"
         template = "wagtail/blocks/hover_gallery.html"
 
@@ -296,6 +285,7 @@ class TabsBlock(blocks.StructBlock):
     class Meta:
         """Meta data"""
 
+        label = _("Tabs")
         icon = "dots-horizontal"
         template = "wagtail/blocks/tabs.html"
 
