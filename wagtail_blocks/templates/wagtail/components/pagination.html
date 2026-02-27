@@ -6,7 +6,7 @@
   {% if page_obj.has_previous %}
   <li class="tooltip" data-tip="{% translate 'Previous' %}">
     <a
-      href="?page={{ page_obj.previous_page_number }}"
+      href="{% querystring request.GET page=page_obj.previous_page_number %}"
       class="btn btn-sm btn-ghost lg:btn-md"
     >
       <i data-lucide="chevron-left" class="size-4 lg:size-6 rtl:rotate-180"></i>
@@ -15,7 +15,10 @@
   </li>
 
   <li class="tooltip" data-tip="{% translate 'First' %}">
-    <a href="?page=1" class="btn btn-sm btn-ghost lg:btn-md">
+    <a
+      href="{% querystring request.GET page=1 %}"
+      class="btn btn-sm btn-ghost lg:btn-md"
+    >
       <i
         data-lucide="chevron-first"
         class="size-4 lg:size-6 rtl:rotate-180"
@@ -34,7 +37,7 @@
   {% if page_obj.has_next %}
   <li class="tooltip" data-tip="{% translate 'Last' %}">
     <a
-      href="?page={{ page_obj.paginator.num_pages }}"
+      href="{% querystring request.GET page=page_obj.paginator.num_pages %}"
       class="btn btn-sm btn-ghost lg:btn-md"
     >
       {% translate 'Last' %}
@@ -44,7 +47,7 @@
 
   <li class="tooltip" data-tip="{% translate 'Next' %}">
     <a
-      href="?page={{ page_obj.next_page_number }}"
+      href="{% querystring request.GET page=page_obj.next_page_number %}"
       class="btn btn-sm btn-ghost lg:btn-md"
     >
       <i

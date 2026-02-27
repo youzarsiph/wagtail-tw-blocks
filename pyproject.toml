@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "wagtail-tw-blocks"
-version = "1.1.0"
+version = "1.1.1"
 description = "A comprehensive library of production-ready `StreamField` components and UI elements designed for Wagtail CMS."
 authors = ["Yousef Abu Shanab <josephyousef249@gmail.com>"]
 license = "MIT"
