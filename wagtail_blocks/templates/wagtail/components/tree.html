@@ -1,7 +1,7 @@
 {% load wagtailcore_tags %}
 
 <!---->
-{% for p in page.get_children %}
+{% for p in page.get_children.live.public %}
 <!---->
 {% if p.get_children_count > 0 %}
 <li>
