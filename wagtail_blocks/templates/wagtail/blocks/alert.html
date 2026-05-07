@@ -5,7 +5,7 @@
     role="alert"
     class="alert alert-vertical {% if self.style %}alert-{{ self.style }}{% endif %} alert-{{ self.level }} md:alert-horizontal"
   >
-    <i data-lucide="{{ icon }}" class="size-4 lg:size-6"></i>
+    <i data-lucide="{{ self.icon }}" class="size-4 lg:size-6"></i>
 
     <div>{{ self.message|richtext }}</div>
   </div>

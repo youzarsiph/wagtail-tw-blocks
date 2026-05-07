@@ -1,16 +1,12 @@
 """Block definitions"""
 
-import math
-from typing import Any, Dict, Literal, Optional
-
-from django.utils.crypto import get_random_string
 from django.utils.translation import gettext_lazy as _
 from wagtail import blocks
 from wagtail.documents.blocks import DocumentChooserBlock
 from wagtail.embeds.blocks import EmbedBlock
 from wagtail.images.blocks import ImageBlock
 
-from wagtail_blocks import constants
+from wagtail_blocks import constants, values
 
 
 class AccordionItem(blocks.StructBlock):
@@ -20,11 +16,13 @@ class AccordionItem(blocks.StructBlock):
     content = blocks.RichTextBlock(help_text=_("Item content"))
 
 
-class AccordionBlock(blocks.StructBlock):
+class AccordionBlock(values.NameMixin, blocks.StructBlock):
     """
     Accordion is used for showing and hiding content
     but only one item can stay open at a time.
     """
+
+    prefix = "accordion"
 
     style = blocks.ChoiceBlock(
         choices=constants.ACCORDION_STYLES,
@@ -36,84 +34,32 @@ class AccordionBlock(blocks.StructBlock):
     class Meta:
         """Meta data"""
 
-        label = _("Accordion")
         icon = "collapse-down"
+        label = _("Accordion")
         template = "wagtail/blocks/accordion.html"
-
-    def get_context(
-        self,
-        value: Dict[str, Any],
-        parent_context: Optional[Dict[str, Any]] = None,
-    ) -> Dict[str, Any]:
-        return {
-            **super().get_context(value, parent_context),
-            "name": get_random_string(5),
-        }
 
 
 class AlertBlock(blocks.StructBlock):
     """Alert informs users about important events."""
 
     level = blocks.ChoiceBlock(
-        choices=constants.ALERT_LEVELS, help_text=_("Alert level")
+        choices=constants.ALERT_LEVELS,
+        help_text=_("Alert level"),
     )
     style = blocks.ChoiceBlock(
-        choices=constants.ALERT_STYLES, required=False, help_text=_("Alert style")
+        choices=constants.ALERT_STYLES,
+        required=False,
+        help_text=_("Alert style"),
     )
     message = blocks.RichTextBlock(help_text=_("Alert message"))
 
     class Meta:
         """Meta data"""
 
-        label = _("Alert")
         icon = "warning"
+        label = _("Alert")
+        value_class = values.AlertValue
         template = "wagtail/blocks/alert.html"
-
-    def get_icon(
-        self,
-        level: Optional[Literal["info", "success", "warning", "error"]],
-    ) -> Literal[
-        "info",
-        "circle-check",
-        "alert-triangle",
-        "x-circle",
-        "question-mark-circle",
-    ]:
-        """
-        Get alert icon based on alert level.
-
-        Args:
-            level (str): Alert level
-
-        Returns:
-            str: Alert icon
-        """
-
-        match level:
-            case "info":
-                return level
-
-            case "success":
-                return "circle-check"
-
-            case "warning":
-                return "alert-triangle"
-
-            case "error":
-                return "x-circle"
-
-            case None:
-                return "question-mark-circle"
-
-    def get_context(
-        self,
-        value: Dict[str, Any],
-        parent_context: Optional[Dict[str, Any]] = None,
-    ) -> Dict[str, Any]:
-        return {
-            **super().get_context(value, parent_context),
-            "icon": self.get_icon(value.get("level")),
-        }
 
 
 class CarouselBlock(blocks.StructBlock):
@@ -124,34 +70,26 @@ class CarouselBlock(blocks.StructBlock):
     class Meta:
         """Meta data"""
 
-        label = _("Carousel")
         icon = "media"
+        label = _("Carousel")
+        value_class = values.CarouselValue
         template = "wagtail/blocks/carousel.html"
-
-    def get_context(
-        self,
-        value: Dict[str, Any],
-        parent_context: Optional[Dict[str, Any]] = None,
-    ) -> Dict[str, Any]:
-        return {
-            **super().get_context(value, parent_context),
-            "item_count": len(value.get("items", 0)),
-        }
 
 
 class CodeBlock(blocks.StructBlock):
     """Code block is used to show a block of code in a box that looks like a code editor."""
 
     language = blocks.ChoiceBlock(
-        choices=constants.PROGRAMMING_LANGUAGES, help_text=_("Programming language")
+        choices=constants.PROGRAMMING_LANGUAGES,
+        help_text=_("Programming language"),
     )
     code = blocks.TextBlock(help_text=_("Code content"))
 
     class Meta:
         """Meta data"""
 
-        label = _("Code")
         icon = "code"
+        label = _("Code")
         template = "wagtail/blocks/code.html"
 
 
@@ -164,8 +102,8 @@ class DiffBlock(blocks.StructBlock):
     class Meta:
         """Meta data"""
 
-        label = _("Diff")
         icon = "image"
+        label = _("Diff")
         template = "wagtail/blocks/diff.html"
 
 
@@ -177,55 +115,10 @@ class DocumentBlock(blocks.StructBlock):
     class Meta:
         """Meta data"""
 
-        label = _("Document")
         icon = "doc-full"
+        label = _("Document")
+        value_class = values.DocumentValue
         template = "wagtail/blocks/document.html"
-
-    def get_doc_size(self, size_bytes: int) -> str:
-        """
-        Converts a file size in bytes into a human-readable string (e.g., "1.43 MB").
-
-        This method uses the binary prefix system (base 1024) and scales the
-        unit dynamically based on the magnitude of the file size.
-
-        Args:
-            size_bytes (int): The total size of the document in bytes.
-
-        Returns:
-            str: A formatted string containing the scaled size and its unit.
-        """
-
-        if size_bytes <= 0:
-            return "0 B"
-
-        # Define the sequence of data units supported
-        DATA_UNITS = ("B", "KB", "MB", "GB", "TB", "PB", "EB")
-
-        # Determine the power of 1024 to which the size corresponds
-        # log(size, 1024) returns the index of the unit in our DATA_UNITS tuple
-        unit_index = int(math.floor(math.log(size_bytes, 1024)))
-
-        # Safety check: ensure the index does not exceed our defined units
-        unit_index = min(unit_index, len(DATA_UNITS) - 1)
-
-        # Calculate the divisor: 1024 raised to the power of the unit index
-        divisor = math.pow(1024, unit_index)
-
-        # Scale the size and round to two decimal places for UI clarity
-        scaled_size = round(size_bytes / divisor, 2)
-        unit_label = DATA_UNITS[unit_index]
-
-        return f"{scaled_size} {unit_label}"
-
-    def get_context(
-        self,
-        value: Dict[str, Any],
-        parent_context: Optional[Dict[str, Any]] = None,
-    ) -> Dict[str, Any]:
-        return {
-            **super().get_context(value, parent_context),
-            "size": self.get_doc_size(value.get("document").file_size),
-        }
 
 
 class HoverGalleryBlock(blocks.StructBlock):
@@ -246,8 +139,8 @@ class HoverGalleryBlock(blocks.StructBlock):
     class Meta:
         """Meta data"""
 
-        label = _("Gallery")
         icon = "image"
+        label = _("Gallery")
         template = "wagtail/blocks/hover_gallery.html"
 
 
@@ -270,8 +163,10 @@ class TabItem(blocks.StructBlock):
     )
 
 
-class TabsBlock(blocks.StructBlock):
+class TabsBlock(values.NameMixin, blocks.StructBlock):
     """Tabs can be used to show a list of links in a tabbed format."""
+
+    prefix = "tabs"
 
     style = blocks.ChoiceBlock(
         choices=constants.TAB_STYLES,
@@ -288,13 +183,3 @@ class TabsBlock(blocks.StructBlock):
         label = _("Tabs")
         icon = "dots-horizontal"
         template = "wagtail/blocks/tabs.html"
-
-    def get_context(
-        self,
-        value: Dict[str, Any],
-        parent_context: Optional[Dict[str, Any]] = None,
-    ) -> Dict[str, Any]:
-        return {
-            **super().get_context(value, parent_context),
-            "name": get_random_string(5),
-        }

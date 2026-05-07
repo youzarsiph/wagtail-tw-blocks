@@ -24,6 +24,7 @@
     class="grid gap-4"
     enctype="multipart/form-data"
     method="{{ method|default:'post' }}"
+    action="{{ action|default:'' }}"
   >
     {% if csrf|default_if_none:True %}{% csrf_token %}{% endif %}
 
