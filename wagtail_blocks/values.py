@@ -163,4 +163,5 @@ class DocumentValue(StructValue):
             size: Human-readable document size.
         """
 
-        return self.get_doc_size(self.get("document").file_size)
+        doc = self.get("document")
+        return self.get_doc_size(doc.file_size if doc else 0)

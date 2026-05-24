@@ -179,6 +179,7 @@ Accessible, daisyUI-styled wrappers for standard Django forms.
 - **Context:** A Django `form`.
 - **Options:**
   - `method`: Form `method` attribute (Defaults to `post`).
+  - `action`: Form `action` attribute (Defaults to `''`).
   - `csrf`: A boolean that indicates whether to include Django `{% csrf_token %}` in the form (Defaults to `True`).
 - **Usage:**
 
