@@ -1,0 +1,22 @@
+<style>
+  .cp_embed_wrapper,
+  .cp_embed_wrapper > iframe {
+    height: 100%;
+    width: 100%;
+  }
+</style>
+
+<div
+  class="my-4 overflow-hidden size-full aspect-video bg-base-300 border border-base-300 rounded-field"
+>
+  <p {{ self.attributes }} data-version="2" class="codepen">
+    <span class="sr-only">
+      See the Pen
+      <a href="{{ self.url }}">{{ self.title }}</a>
+      by {{ self.user }} (
+      <a href="https://codepen.io/{{ self.user }}"> @{{ self.user }} </a>
+      ) on <a href="https://codepen.io">CodePen</a>.
+    </span>
+  </p>
+</div>
+<script async src="https://public.codepenassets.com/embed/index.js"></script>

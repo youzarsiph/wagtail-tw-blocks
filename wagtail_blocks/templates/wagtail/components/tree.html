@@ -3,15 +3,10 @@
 <!---->
 {% for p in page.get_children.live.public %}
 <!---->
-{% if p.get_children_count > 0 %}
+{% if p.get_children.live.public.count > 0 %}
 <li>
   <details>
-    <summary>
-      {% if p.specific.icon %}
-      <i data-lucide="{{ p.specific.icon }}" class="size-4 lg:size-5"></i>
-      {% endif %}{{ p.title }}
-    </summary>
-
+    <summary>{{ p.title }}</summary>
     <ul>
       {% include 'wagtail/components/tree.html' with page=p %}
     </ul>
@@ -19,10 +14,6 @@
 </li>
 {% else %}
 <li>
-  <a href="{% pageurl p %}">
-    {% if p.specific.icon %}
-    <i data-lucide="{{ p.specific.icon }}" class="size-4 lg:size-5"></i>
-    {% endif %}{{ p.title }}
-  </a>
+  <a href="{% pageurl p %}">{{ p.title }}</a>
 </li>
 {% endif %}{% endfor %}

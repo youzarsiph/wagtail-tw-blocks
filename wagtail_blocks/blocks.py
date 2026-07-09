@@ -1,5 +1,6 @@
 """Block definitions"""
 
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.utils.translation import gettext_lazy as _
 from wagtail import blocks
 from wagtail.documents.blocks import DocumentChooserBlock
@@ -183,3 +184,282 @@ class TabsBlock(values.NameMixin, blocks.StructBlock):
         label = _("Tabs")
         icon = "dots-horizontal"
         template = "wagtail/blocks/tabs.html"
+
+
+class IDEBlock(blocks.StructBlock):
+    """Embed online code editor like StackBlitz using a url"""
+
+    title = blocks.CharBlock(
+        required=False,
+        help_text=_("Title of the iframe."),
+    )
+    url = blocks.CharBlock(
+        required=False,
+        help_text=_("IDE embed URL."),
+    )
+
+
+class CodePenBlock(IDEBlock):
+    """Embed CodePen pens in your wagtail-powered sites"""
+
+    slug_hash = blocks.CharBlock(
+        required=True,
+        help_text=_(
+            "The slug hash of the Pen being embedded. Required or the embed will fail."
+        ),
+    )
+    user = blocks.CharBlock(
+        required=False,
+        help_text=_("The CodePen username associated with the Pen."),
+    )
+    theme_id = blocks.CharBlock(
+        required=False,
+        help_text=_(
+            "Theme ID for the embed. "
+            "Use -1 for Light, -3 for Dark, or a custom theme ID."
+        ),
+    )
+    height = blocks.IntegerBlock(
+        required=False,
+        help_text=_("Height of the embed iframe in pixels."),
+    )
+    default_tab = blocks.CharBlock(
+        required=False,
+        help_text=_(
+            "Deprecated: default tab to show (e.g. 'css,result'). "
+            "Prefer using `file` and `preview` instead."
+        ),
+    )
+    file = blocks.CharBlock(
+        required=False,
+        help_text=_(
+            "Default file to show in the embed (e.g. '/.codepen/pen.config.json'). "
+            "Leave empty to show the first file alphabetically."
+        ),
+    )
+    preview = blocks.BooleanBlock(
+        required=False,
+        help_text=_(
+            "Whether to show preview mode. "
+            "True = click-to-play preview, False = hide preview, None = normal iframe preview."
+        ),
+    )
+    zoom = blocks.FloatBlock(
+        required=False,
+        help_text=_(
+            "Zoom level for the preview. "
+            "1 = normal, 0.5 = half-size, 0.25 = quarter-size."
+        ),
+    )
+    editable = blocks.BooleanBlock(
+        required=False,
+        help_text=_(
+            "Enable live editing inside the embed. "
+            "Only one file can be edited at a time."
+        ),
+    )
+    css_class = blocks.CharBlock(
+        required=False,
+        help_text=_(
+            "Optional CSS class to apply to the embed wrapper for custom styling."
+        ),
+    )
+    prefill = blocks.TextBlock(
+        required=False,
+        help_text=_(
+            "JSON-like data for Prefill Embeds. "
+            "Used when embedding code directly instead of referencing a saved Pen."
+        ),
+    )
+
+    class Meta:
+        """Meta data"""
+
+        icon = "code"
+        label = _("CodePen embeds")
+        value_class = values.CodePenValue
+        template = "wagtail/blocks/code/pen.html"
+
+
+class CodeSandboxBlock(IDEBlock):
+    """Embed CodeSandbox in your wagtail-powered sites"""
+
+    class Meta:
+        """Meta data"""
+
+        icon = "code"
+        label = _("CodeSandbox embeds")
+        template = "wagtail/blocks/code/sandbox.html"
+
+
+class StackBlitzBlock(IDEBlock):
+    """Embed StackBlitz in your wagtail-powered sites"""
+
+    ctl = blocks.BooleanBlock(
+        required=False,
+        help_text=_("Prompts users to “click to load” the embed."),
+    )
+    devtoolsheight = blocks.IntegerBlock(
+        required=False,
+        validators=[MinValueValidator(0), MaxValueValidator(100)],
+        help_text=_("Sets the height of the console in the editor preview."),
+    )
+    embed = blocks.BooleanBlock(
+        required=False,
+        help_text=_("Forces embed view regardless of screen size."),
+    )
+    file = blocks.CharBlock(
+        required=False,
+        help_text=_("Specifies the default file to have open in the editor."),
+    )
+    hidedevtools = blocks.BooleanBlock(
+        required=False,
+        help_text=_("Hides the console in the editor preview."),
+    )
+    hideExplorer = blocks.BooleanBlock(
+        required=False,
+        help_text=_("Hides the file explorer pane in embed view."),
+    )
+    hideNavigation = blocks.BooleanBlock(
+        required=False,
+        help_text=_("Hides the preview's URL bar."),
+    )
+    hideNavigation = blocks.BooleanBlock(
+        required=False,
+        help_text=_("Hides the preview's URL bar."),
+    )
+    initialpath = blocks.URLBlock(
+        required=False,
+        help_text=_(
+            "Specifies the initial URL path (URI encoded) the preview should open."
+        ),
+    )
+    showSidebar = blocks.BooleanBlock(
+        required=False,
+        help_text=_("Shows the sidebar in embed view (large viewports only)"),
+    )
+    startScript = blocks.CharBlock(
+        required=False,
+        help_text=_(
+            "Specifies the npm script to run on project load (WebContainers-based projects only)."
+        ),
+    )
+    terminalHeight = blocks.IntegerBlock(
+        required=False,
+        validators=[MinValueValidator(0), MaxValueValidator(100)],
+        help_text=_("Sets the height of the terminal."),
+    )
+    theme = blocks.ChoiceBlock(
+        required=False,
+        choices=[("light", _("Light")), ("dark", _("Dark"))],
+        help_text=_("Sets the color theme of the editor UI."),
+    )
+    view = blocks.ChoiceBlock(
+        required=False,
+        choices=[("editor", _("Editor")), ("preview", _("Preview"))],
+        help_text=_("Specifies which view to open by default."),
+    )
+
+    class Meta:
+        """Meta data"""
+
+        icon = "code"
+        label = _("StackBlitz embeds")
+        value_class = values.StackBlitzValue
+        template = "wagtail/blocks/code/stack_blitz.html"
+
+
+class ExpoSnackBlock(blocks.StructBlock):
+    """Embed Expo snacks in your wagtail-powered sites"""
+
+    id = blocks.CharBlock(
+        required=False,
+        help_text=_(
+            "Id of the saved Snack. "
+            "When specified, `code` and `dependencies` are ignored."
+        ),
+    )
+    name = blocks.CharBlock(
+        required=False,
+        help_text=_("Name of the Snack."),
+    )
+    description = blocks.CharBlock(
+        required=False,
+        help_text=_("Description of the Snack."),
+    )
+    code = blocks.TextBlock(
+        required=False,
+        help_text=_("JavaScript code to use for the Snack."),
+    )
+    dependencies = blocks.CharBlock(
+        required=False,
+        help_text=_(
+            "Comma separated list of dependencies to include in the Snack. "
+            "The dependency version is optional. When omitted the version "
+            "that is compatible with the selected SDK version is used."
+        ),
+    )
+    loading = blocks.ChoiceBlock(
+        default="auto",
+        required=False,
+        choices=[
+            ("auto", _("Auto")),
+            ("lazy", _("Lazy")),
+            ("eager", _("Eager")),
+        ],
+        help_text=_("iFrame loading attribute."),
+    )
+    platform = blocks.ChoiceBlock(
+        default="web",
+        required=False,
+        choices=[
+            ("web", _("Web")),
+            ("ios", _("IOS")),
+            ("android", _("Android")),
+            ("mydevice", _("My Device")),
+        ],
+        help_text=_("The default platform to preview the Snack on."),
+    )
+    preview = blocks.BooleanBlock(
+        default=True,
+        required=False,
+        help_text=_("Shows or hides the preview pane."),
+    )
+    sdkversion = blocks.CharBlock(
+        required=False,
+        help_text=_(
+            "The Expo SDK version to use (eg. 38.0.0). "
+            "Defaults to the latest released Expo SDK version."
+        ),
+    )
+    supportedplatforms = blocks.CharBlock(
+        required=False,
+        help_text=_(
+            "The platforms available for previewing the Snack."
+            "Defaults to `mydevice,ios,android,web` when not specified."
+        ),
+    )
+    theme = blocks.ChoiceBlock(
+        default="light",
+        choices=[("light", _("Light")), ("dark", _("Dark"))],
+        help_text=_(
+            "The theme to use, light or dark. "
+            "When omitted uses the theme that was configured by the user (defaults to light)."
+        ),
+    )
+    deviceappearance = blocks.ChoiceBlock(
+        required=False,
+        choices=[("light", _("Light")), ("dark", _("Dark"))],
+        help_text=_(
+            "The device appearance to use, `light` or `dark`. "
+            "When omitted, uses fallback to Snack theme (defaults to `undefined`)."
+        ),
+    )
+
+    class Meta:
+        """Meta data"""
+
+        icon = "code"
+        label = _("Expo snack embeds")
+        value_class = values.ExpoSnackValue
+        template = "wagtail/blocks/code/expo_snack.html"

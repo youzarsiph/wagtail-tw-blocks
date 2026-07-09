@@ -2,10 +2,10 @@
 
 import math
 import random
-from typing import Any, Dict, Literal, Optional, override
+from typing import Any, Dict, List, Literal, Optional, override
 
+from django.utils.http import urlencode
 from wagtail.blocks import StructValue
-
 
 NUMBER_OF_BYTES = 5
 
@@ -165,3 +165,60 @@ class DocumentValue(StructValue):
 
         doc = self.get("document")
         return self.get_doc_size(doc.file_size if doc else 0)
+
+
+class AttributeValue(StructValue):
+    """Add an `self.attributes` to Value class"""
+
+    prefix: str = ""
+    exclude: List[str] = ["self"]
+
+    @property
+    def attributes(self) -> str:
+        """
+        Get HTML attributes the embed.
+
+        Returns:
+            size: HTML attributes to be used in the template.
+        """
+
+        return " ".join(
+            [
+                f"data-{self.prefix}{str(attribute).replace('_', '-')}={str(value)}"
+                for attribute, value in self.items()
+                if attribute not in self.exclude and value
+            ]
+        )
+
+
+class CodePenValue(AttributeValue):
+    """`StructValue` for `CodePenBlock`"""
+
+
+class ExpoSnackValue(AttributeValue):
+    """`StructValue` for `ExpoSnackBlock`"""
+
+    prefix = "snack-"
+
+
+class StackBlitzValue(StructValue):
+    """`StructValue` for `StackBlitzBlock`"""
+
+    exclude = ["self", "title", "url"]
+
+    @property
+    def params(self) -> str:
+        """
+        Get URL parameters.
+
+        Returns:
+            size: URL parameters to be used in the template.
+        """
+
+        return urlencode(
+            {
+                str(k).replace("_", "-"): v
+                for k, v in self.items()
+                if k not in self.exclude and v
+            }
+        )

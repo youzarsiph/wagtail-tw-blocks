@@ -67,6 +67,22 @@ INSTALLED_APPS = [
 
   ![Code Demo](https://github.com/user-attachments/assets/b7c076db-8a01-4295-8507-add12ad1ad7c)
 
+- **CodeSandbox embed:** Embed CodeSandbox instances directly into your pages.
+
+  ![CodeSandbox Demo](https://github.com/user-attachments/assets/d1a8c939-20e8-4170-a6c4-2ffdea36f0dc)
+
+- **CodePen embed:** Provide seamless integration for embedding CodePen instances.
+
+  ![CodePen Demo](https://github.com/user-attachments/assets/854c8fa8-e3de-4ee8-a1d6-10ba28d8298e)
+
+- **Expo Snack embed:** Add live mobile app coding environments directly into your pages.
+
+  ![Expo Snack Demo](https://github.com/user-attachments/assets/1ec313aa-47ab-48fc-bf64-03162a10d411)
+
+- **StackBlitz embed:** Provide seamless integration for embedding StackBlitz instances.
+
+  ![StackBlitz Demo](https://github.com/user-attachments/assets/15251c17-7b99-4dc7-a749-42e10840bd01)
+
 - **Document:** Displays document info inside a card with download button.
 
   ![Document Demo](https://github.com/user-attachments/assets/5131c90c-bfee-4318-85db-5b8b92bd31ce)
